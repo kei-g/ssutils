@@ -1,14 +1,10 @@
 package com.snowstep115.ssutils.item;
 
-import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.GroundBlockCompressed;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
+import java.lang.reflect.InvocationTargetException;
 
-public class DirtCompressed extends ItemBlock {
-    public DirtCompressed() {
-        super(new GroundBlockCompressed("dirt_compressed"));
-        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "dirt_compressed"));
-        setUnlocalizedName("ssutils.dirt_compressed");
+public class DirtCompressed extends ItemBlockGeneric<GroundBlockCompressed> {
+    public DirtCompressed() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        super("dirt_compressed", GroundBlockCompressed.class);
     }
 }

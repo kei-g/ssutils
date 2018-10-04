@@ -4,6 +4,7 @@ import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -19,6 +20,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         SnowStepUtils.LOGGER.info("CommonProxy.preInit");
+        ModItems.init();
     }
 
     public void init(FMLInitializationEvent event) {
@@ -32,6 +34,13 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         SnowStepUtils.LOGGER.info("CommonProxy.registerBlocks");
+        ModItems.ANDESITE_COMPRESSED.process(event);
+        ModItems.COBBLESTONE_COMPRESSED.process(event);
+        ModItems.DIORITE_COMPRESSED.process(event);
+        ModItems.DIRT_COMPRESSED.process(event);
+        ModItems.GRANITE_COMPRESSED.process(event);
+        ModItems.NETHERRACK_COMPRESSED.process(event);
+        ModItems.STONE_COMPRESSED.process(event);
     }
 
     @SubscribeEvent

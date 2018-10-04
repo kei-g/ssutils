@@ -1,14 +1,10 @@
 package com.snowstep115.ssutils.item;
 
-import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.RockBlockCompressed;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
+import java.lang.reflect.InvocationTargetException;
 
-public class DioriteCompressed extends ItemBlock {
-    public DioriteCompressed() {
-        super(new RockBlockCompressed("diorite_compressed"));
-        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "diorite_compressed"));
-        setUnlocalizedName("ssutils.diorite_compressed");
+public class DioriteCompressed extends ItemBlockGeneric<RockBlockCompressed> {
+    public DioriteCompressed() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        super("diorite_compressed", RockBlockCompressed.class);
     }
 }

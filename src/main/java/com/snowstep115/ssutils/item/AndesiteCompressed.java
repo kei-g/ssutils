@@ -1,14 +1,10 @@
 package com.snowstep115.ssutils.item;
 
-import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.RockBlockCompressed;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
+import java.lang.reflect.InvocationTargetException;
 
-public class AndesiteCompressed extends ItemBlock {
-    public AndesiteCompressed() {
-        super(new RockBlockCompressed("andesite_compressed"));
-        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "andesite_compressed"));
-        setUnlocalizedName("ssutils.andesite_compressed");
+public class AndesiteCompressed extends ItemBlockGeneric<RockBlockCompressed> {
+    public AndesiteCompressed() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        super("andesite_compressed", RockBlockCompressed.class);
     }
 }

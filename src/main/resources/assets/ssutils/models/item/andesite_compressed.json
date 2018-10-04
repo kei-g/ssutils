@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
+    "parent": "block/cube_all",
     "textures": {
-        "layer0": "ssutils:items/andesite_compressed"
+        "all": "ssutils:blocks/andesite_compressed"
     }
 }

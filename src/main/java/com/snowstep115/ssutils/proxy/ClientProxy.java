@@ -3,6 +3,7 @@ package com.snowstep115.ssutils.proxy;
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.ModItems;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -27,14 +28,14 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         SnowStepUtils.LOGGER.info("ClientProxy.registerModels");
-        ModelLoader.setCustomModelResourceLocation(ModItems.ANDESITE_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "andesite_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.COBBLESTONE_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "cobblestone_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.DIORITE_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "diorite_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.DIRT_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "dirt_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.GRANITE_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "granite_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.NETHERRACK_COMPRESSED, 0,new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "netherrack_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.RED_FLOWER_COMPRESSED, 0,new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "red_flower_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.STONE_COMPRESSED, 0,new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "stone_compressed"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(ModItems.WHEAT_SEEDS_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "wheat_seeds_compressed"), "inventory"));
+        ModItems.ANDESITE_COMPRESSED.process(event);
+        ModItems.COBBLESTONE_COMPRESSED.process(event);
+        ModItems.DIORITE_COMPRESSED.process(event);
+        ModItems.DIRT_COMPRESSED.process(event);
+        ModItems.GRANITE_COMPRESSED.process(event);
+        ModItems.NETHERRACK_COMPRESSED.process(event);
+        ModItems.RED_FLOWER_COMPRESSED.process(event);
+        ModItems.STONE_COMPRESSED.process(event);
+        ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
     }
 }
