@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GraniteCompressed extends ItemBlock {
     public GraniteCompressed() {
-        super(new RockBlockCompressed("cobblestone_compressed"));
+        super(new RockBlockCompressed("granite_compressed"));
         setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "granite_compressed"));
         setUnlocalizedName("ssutils.granite_compressed");
     }

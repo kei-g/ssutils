@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class DioriteCompressed extends ItemBlock {
     public DioriteCompressed() {
-        super(new RockBlockCompressed("cobblestone_compressed"));
+        super(new RockBlockCompressed("diorite_compressed"));
         setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "diorite_compressed"));
         setUnlocalizedName("ssutils.diorite_compressed");
     }
