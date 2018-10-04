@@ -1,0 +1,15 @@
+{
+    "type": "forge:ore_shapeless",
+    "group": "recipe:ssutils:granite",
+    "ingredients": [
+        {
+            "item": "ssutils:granite_compressed",
+            "data": 0
+        }
+    ],
+    "result": {
+        "item": "minecraft:stone",
+        "data": 1,
+        "count": 9
+    }
+}

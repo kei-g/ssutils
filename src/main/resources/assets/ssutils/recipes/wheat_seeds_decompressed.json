@@ -1,0 +1,15 @@
+{
+    "type": "forge:ore_shapeless",
+    "group": "recipe:ssutils:wheat_seeds",
+    "ingredients": [
+        {
+            "item": "ssutils:wheat_seeds_compressed",
+            "data": 0
+        }
+    ],
+    "result": {
+        "item": "minecraft:wheat_seeds",
+        "data": 0,
+        "count": 9
+    }
+}

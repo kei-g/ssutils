@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:andesite",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone",
+            "data": 5
+        }
+    },
+    "result": {
+        "item": "ssutils:andesite_compressed",
+        "data": 0
+    }
+}

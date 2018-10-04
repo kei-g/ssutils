@@ -1,0 +1,15 @@
+{
+    "type": "forge:ore_shapeless",
+    "group": "recipe:ssutils:diorite",
+    "ingredients": [
+        {
+            "item": "ssutils:diorite_compressed",
+            "data": 0
+        }
+    ],
+    "result": {
+        "item": "minecraft:stone",
+        "data": 3,
+        "count": 9
+    }
+}

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ssutils2",
+  "name": "SnowStep's Utilities",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["snowstep115"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

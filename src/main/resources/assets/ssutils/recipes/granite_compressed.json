@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:granite",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone",
+            "data": 1
+        }
+    },
+    "result": {
+        "item": "ssutils:granite_compressed",
+        "data": 0
+    }
+}
