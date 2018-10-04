@@ -33,6 +33,7 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomModelResourceLocation(ModItems.DIRT_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "dirt_compressed"), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.GRANITE_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "granite_compressed"), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.NETHERRACK_COMPRESSED, 0,new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "netherrack_compressed"), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.RED_FLOWER_COMPRESSED, 0,new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "red_flower_compressed"), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.STONE_COMPRESSED, 0,new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "stone_compressed"), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ModItems.WHEAT_SEEDS_COMPRESSED, 0, new ModelResourceLocation(new ResourceLocation(SnowStepUtils.MODID, "wheat_seeds_compressed"), "inventory"));
     }

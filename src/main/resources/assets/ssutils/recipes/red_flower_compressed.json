@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:red_flower",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:red_flower",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "ssutils:red_flower_compressed",
+        "data": 0
+    }
+}

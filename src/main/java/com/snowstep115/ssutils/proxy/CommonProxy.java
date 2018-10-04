@@ -43,6 +43,7 @@ public class CommonProxy {
         event.getRegistry().register(ModItems.DIRT_COMPRESSED);
         event.getRegistry().register(ModItems.GRANITE_COMPRESSED);
         event.getRegistry().register(ModItems.NETHERRACK_COMPRESSED);
+        event.getRegistry().register(ModItems.RED_FLOWER_COMPRESSED);
         event.getRegistry().register(ModItems.STONE_COMPRESSED);
         event.getRegistry().register(ModItems.WHEAT_SEEDS_COMPRESSED);
     }
