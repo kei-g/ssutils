@@ -7,3 +7,11 @@ item.ssutils.netherrack_compressed.name=Compressed Netherrack
 item.ssutils.red_flower_compressed.name=Compressed Poppy
 item.ssutils.stone_compressed.name=Compressed Stone
 item.ssutils.wheat_seeds_compressed.name=Compressed Wheat Seeds
+
+tile.ssutils.andesite_compressed.name=Compressed Andesite
+tile.ssutils.cobblestone_compressed.name=Compressed Cobblestone
+tile.ssutils.diorite_compressed.name=Compressed Diorite
+tile.ssutils.dirt_compressed.name=Compressed Dirt
+tile.ssutils.granite_compressed.name=Compressed Granite
+tile.ssutils.netherrack_compressed.name=Compressed Netherrack
+tile.ssutils.stone_compressed.name=Compressed Stone
