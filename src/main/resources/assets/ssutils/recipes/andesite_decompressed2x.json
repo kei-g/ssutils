@@ -1,0 +1,15 @@
+{
+    "type": "forge:ore_shapeless",
+    "group": "recipe:ssutils:andesite",
+    "ingredients": [
+        {
+            "item": "ssutils:andesite_double_compressed",
+            "data": 0
+        }
+    ],
+    "result": {
+        "item": "ssutils:andesite_compressed",
+        "data": 0,
+        "count": 9
+    }
+}

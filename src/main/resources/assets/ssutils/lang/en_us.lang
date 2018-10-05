@@ -1,20 +1,34 @@
 item.ssutils.andesite_compressed.name=Compressed Andesite
+item.ssutils.andesite_double_compressed.name=Double Compressed Andesite
 item.ssutils.cobblestone_compressed.name=Compressed Cobblestone
+item.ssutils.cobblestone_double_compressed.name=Double Compressed Cobblestone
 item.ssutils.diorite_compressed.name=Compressed Diorite
+item.ssutils.diorite_double_compressed.name=Double Compressed Diorite
 item.ssutils.dirt_compressed.name=Compressed Dirt
+item.ssutils.dirt_double_compressed.name=Double Compressed Dirt
 item.ssutils.granite_compressed.name=Compressed Granite
+item.ssutils.granite_double_compressed.name=Double Compressed Granite
 item.ssutils.netherrack_compressed.name=Compressed Netherrack
+item.ssutils.netherrack_double_compressed.name=Double Compressed Netherrack
 item.ssutils.red_flower_compressed.name=Compressed Poppy
 item.ssutils.stone_compressed.name=Compressed Stone
+item.ssutils.stone_double_compressed.name=Double Compressed Stone
 item.ssutils.wheat_seeds_compressed.name=Compressed Wheat Seeds
 item.ssutils.yukiho.name=YUKIHO HAGIWARA
 
 tile.ssutils.andesite_compressed.name=Compressed Andesite
+tile.ssutils.andesite_double_compressed.name=Double Compressed Andesite
 tile.ssutils.cobblestone_compressed.name=Compressed Cobblestone
+tile.ssutils.cobblestone_double_compressed.name=Double Compressed Cobblestone
 tile.ssutils.diorite_compressed.name=Compressed Diorite
+tile.ssutils.diorite_double_compressed.name=Double Compressed Diorite
 tile.ssutils.dirt_compressed.name=Compressed Dirt
+tile.ssutils.dirt_double_compressed.name=Double Compressed Dirt
 tile.ssutils.granite_compressed.name=Compressed Granite
+tile.ssutils.granite_double_compressed.name=Double Compressed Granite
 tile.ssutils.netherrack_compressed.name=Compressed Netherrack
+tile.ssutils.netherrack_double_compressed.name=Double Compressed Netherrack
 tile.ssutils.stone_compressed.name=Compressed Stone
+tile.ssutils.stone_double_compressed.name=Double Compressed Stone
 
 itemGroup.ssutils=SnowStep's Utilities

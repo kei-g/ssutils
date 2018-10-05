@@ -1,20 +1,34 @@
 item.ssutils.andesite_compressed.name=圧縮安山岩
+item.ssutils.andesite_double_compressed.name=二重圧縮安山岩
 item.ssutils.cobblestone_compressed.name=圧縮丸石
+item.ssutils.cobblestone_double_compressed.name=二重圧縮丸石
 item.ssutils.diorite_compressed.name=圧縮閃緑岩
+item.ssutils.diorite_double_compressed.name=二重圧縮閃緑岩
 item.ssutils.dirt_compressed.name=圧縮土
+item.ssutils.dirt_double_compressed.name=二重圧縮土
 item.ssutils.granite_compressed.name=圧縮花崗岩
+item.ssutils.granite_double_compressed.name=二重圧縮花崗岩
 item.ssutils.netherrack_compressed.name=圧縮ネザーラック
+item.ssutils.netherrack_double_compressed.name=二重圧縮ネザーラック
 item.ssutils.red_flower_compressed.name=圧縮ポピー
 item.ssutils.stone_compressed.name=圧縮石
+item.ssutils.stone_double_compressed.name=二重圧縮石
 item.ssutils.wheat_seeds_compressed.name=圧縮された種
 item.ssutils.yukiho.name=萩原雪歩
 
 tile.ssutils.andesite_compressed.name=圧縮安山岩
+tile.ssutils.andesite_double_compressed.name=二重圧縮安山岩
 tile.ssutils.cobblestone_compressed.name=圧縮丸石
+tile.ssutils.cobblestone_double_compressed.name=二重圧縮丸石
 tile.ssutils.diorite_compressed.name=圧縮閃緑岩
+tile.ssutils.diorite_double_compressed.name=二重圧縮閃緑岩
 tile.ssutils.dirt_compressed.name=圧縮土
+tile.ssutils.dirt_double_compressed.name=二重圧縮土
 tile.ssutils.granite_compressed.name=圧縮花崗岩
+tile.ssutils.granite_double_compressed.name=二重圧縮花崗岩
 tile.ssutils.netherrack_compressed.name=圧縮ネザーラック
+tile.ssutils.netherrack_double_compressed.name=二重圧縮ネザーラック
 tile.ssutils.stone_compressed.name=圧縮石
+tile.ssutils.stone_double_compressed.name=二重圧縮石
 
 itemGroup.ssutils=SnowStep's Utilities

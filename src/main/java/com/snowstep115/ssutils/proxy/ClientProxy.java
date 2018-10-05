@@ -28,14 +28,21 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         SnowStepUtils.LOGGER.info("ClientProxy.registerModels");
-        ModItems.ANDESITE_COMPRESSED.process(event);
-        ModItems.COBBLESTONE_COMPRESSED.process(event);
-        ModItems.DIORITE_COMPRESSED.process(event);
-        ModItems.DIRT_COMPRESSED.process(event);
-        ModItems.GRANITE_COMPRESSED.process(event);
-        ModItems.NETHERRACK_COMPRESSED.process(event);
-        ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.STONE_COMPRESSED.process(event);
+        ModItems.STONE_DOUBLE_COMPRESSED.process(event);
+        ModItems.GRANITE_COMPRESSED.process(event);
+        ModItems.GRANITE_DOUBLE_COMPRESSED.process(event);
+        ModItems.DIORITE_COMPRESSED.process(event);
+        ModItems.DIORITE_DOUBLE_COMPRESSED.process(event);
+        ModItems.ANDESITE_COMPRESSED.process(event);
+        ModItems.ANDESITE_DOUBLE_COMPRESSED.process(event);
+        ModItems.COBBLESTONE_COMPRESSED.process(event);
+        ModItems.COBBLESTONE_DOUBLE_COMPRESSED.process(event);
+        ModItems.DIRT_COMPRESSED.process(event);
+        ModItems.DIRT_DOUBLE_COMPRESSED.process(event);
+        ModItems.NETHERRACK_COMPRESSED.process(event);
+        ModItems.NETHERRACK_DOUBLE_COMPRESSED.process(event);
+        ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
     }

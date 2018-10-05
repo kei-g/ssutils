@@ -1,40 +1,50 @@
 package com.snowstep115.ssutils;
 
-import com.snowstep115.ssutils.item.AndesiteCompressed;
-import com.snowstep115.ssutils.item.CobblestoneCompressed;
-import com.snowstep115.ssutils.item.DioriteCompressed;
 import com.snowstep115.ssutils.item.DirtCompressed;
-import com.snowstep115.ssutils.item.GraniteCompressed;
+import com.snowstep115.ssutils.item.DirtDoubleCompressed;
 import com.snowstep115.ssutils.item.ItemBlockBase;
-import com.snowstep115.ssutils.item.NetherrackCompressed;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
-import com.snowstep115.ssutils.item.StoneCompressed;
+import com.snowstep115.ssutils.item.RockCompressed;
+import com.snowstep115.ssutils.item.RockDoubleCompressed;
 import com.snowstep115.ssutils.item.WheatSeedsCompressed;
 import com.snowstep115.ssutils.item.Yukiho;
-
 import net.minecraft.item.Item;
 
 public class ModItems {
     public static ItemBlockBase ANDESITE_COMPRESSED;
+    public static ItemBlockBase ANDESITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase COBBLESTONE_COMPRESSED;
+    public static ItemBlockBase COBBLESTONE_DOUBLE_COMPRESSED;
     public static ItemBlockBase DIORITE_COMPRESSED;
+    public static ItemBlockBase DIORITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase DIRT_COMPRESSED;
+    public static ItemBlockBase DIRT_DOUBLE_COMPRESSED;
     public static ItemBlockBase GRANITE_COMPRESSED;
+    public static ItemBlockBase GRANITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase NETHERRACK_COMPRESSED;
+    public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;
     public static final RedFlowerCompressed RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
     public static ItemBlockBase STONE_COMPRESSED;
+    public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
     public static final WheatSeedsCompressed WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
     public static final Yukiho YUKIHO = new Yukiho();
 
     public static void init() {
         try {
-            ANDESITE_COMPRESSED = new AndesiteCompressed();
-            COBBLESTONE_COMPRESSED = new CobblestoneCompressed();
-            DIORITE_COMPRESSED = new DioriteCompressed();
+            ANDESITE_COMPRESSED = new RockCompressed("andesite");
+            ANDESITE_DOUBLE_COMPRESSED = new RockDoubleCompressed("andesite");
+            COBBLESTONE_COMPRESSED = new RockCompressed("cobblestone");
+            COBBLESTONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("cobblestone");
+            DIORITE_COMPRESSED = new RockCompressed("diorite");
+            DIORITE_DOUBLE_COMPRESSED = new RockDoubleCompressed("diorite");
             DIRT_COMPRESSED = new DirtCompressed();
-            GRANITE_COMPRESSED = new GraniteCompressed();
-            NETHERRACK_COMPRESSED = new NetherrackCompressed();
-            STONE_COMPRESSED = new StoneCompressed();
+            DIRT_DOUBLE_COMPRESSED = new DirtDoubleCompressed();
+            GRANITE_COMPRESSED = new RockCompressed("granite");
+            GRANITE_DOUBLE_COMPRESSED = new RockDoubleCompressed("granite");
+            NETHERRACK_COMPRESSED = new RockCompressed("netherrack");
+            NETHERRACK_DOUBLE_COMPRESSED = new RockDoubleCompressed("netherrack");
+            STONE_COMPRESSED = new RockCompressed("stone");
+            STONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("stone");
         } catch (Exception e) {
             SnowStepUtils.LOGGER.info(e.getMessage());
         }

@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:netherrack",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "ssutils:netherrack_compressed",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "ssutils:netherrack_double_compressed",
+        "data": 0
+    }
+}

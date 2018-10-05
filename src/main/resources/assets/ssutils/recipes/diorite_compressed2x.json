@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:diorite",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "ssutils:diorite_compressed",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "ssutils:diorite_double_compressed",
+        "data": 0
+    }
+}

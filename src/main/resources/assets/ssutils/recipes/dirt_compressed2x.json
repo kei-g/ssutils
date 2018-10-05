@@ -1,0 +1,19 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:dirt",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "ssutils:dirt_compressed",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "ssutils:dirt_double_compressed",
+        "data": 0
+    }
+}
