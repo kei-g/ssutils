@@ -34,26 +34,27 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         SnowStepUtils.LOGGER.info("CommonProxy.registerBlocks");
+        ModItems.STONE_COMPRESSED.process(event);
+        ModItems.GRANITE_COMPRESSED.process(event);
+        ModItems.DIORITE_COMPRESSED.process(event);
         ModItems.ANDESITE_COMPRESSED.process(event);
         ModItems.COBBLESTONE_COMPRESSED.process(event);
-        ModItems.DIORITE_COMPRESSED.process(event);
         ModItems.DIRT_COMPRESSED.process(event);
-        ModItems.GRANITE_COMPRESSED.process(event);
         ModItems.NETHERRACK_COMPRESSED.process(event);
-        ModItems.STONE_COMPRESSED.process(event);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         SnowStepUtils.LOGGER.info("CommonProxy.registerItems");
+        event.getRegistry().register(ModItems.STONE_COMPRESSED);
+        event.getRegistry().register(ModItems.GRANITE_COMPRESSED);
+        event.getRegistry().register(ModItems.DIORITE_COMPRESSED);
         event.getRegistry().register(ModItems.ANDESITE_COMPRESSED);
         event.getRegistry().register(ModItems.COBBLESTONE_COMPRESSED);
-        event.getRegistry().register(ModItems.DIORITE_COMPRESSED);
         event.getRegistry().register(ModItems.DIRT_COMPRESSED);
-        event.getRegistry().register(ModItems.GRANITE_COMPRESSED);
         event.getRegistry().register(ModItems.NETHERRACK_COMPRESSED);
         event.getRegistry().register(ModItems.RED_FLOWER_COMPRESSED);
-        event.getRegistry().register(ModItems.STONE_COMPRESSED);
         event.getRegistry().register(ModItems.WHEAT_SEEDS_COMPRESSED);
+        event.getRegistry().register(ModItems.YUKIHO);
     }
 }

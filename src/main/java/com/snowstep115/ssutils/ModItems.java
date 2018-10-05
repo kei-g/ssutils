@@ -10,6 +10,8 @@ import com.snowstep115.ssutils.item.NetherrackCompressed;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
 import com.snowstep115.ssutils.item.StoneCompressed;
 import com.snowstep115.ssutils.item.WheatSeedsCompressed;
+import com.snowstep115.ssutils.item.Yukiho;
+
 import net.minecraft.item.Item;
 
 public class ModItems {
@@ -22,6 +24,7 @@ public class ModItems {
     public static final RedFlowerCompressed RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
     public static ItemBlockBase STONE_COMPRESSED;
     public static final WheatSeedsCompressed WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
+    public static final Yukiho YUKIHO = new Yukiho();
 
     public static void init() {
         try {

@@ -11,6 +11,7 @@ public class WheatSeedsCompressed extends Item {
     public WheatSeedsCompressed() {
         setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "wheat_seeds_compressed"));
         setUnlocalizedName("ssutils.wheat_seeds_compressed");
+        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
     }
 
     public void process(ModelRegistryEvent event) {

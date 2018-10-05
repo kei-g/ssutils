@@ -7,6 +7,7 @@ item.ssutils.netherrack_compressed.name=圧縮ネザーラック
 item.ssutils.red_flower_compressed.name=圧縮ポピー
 item.ssutils.stone_compressed.name=圧縮石
 item.ssutils.wheat_seeds_compressed.name=圧縮された種
+item.ssutils.yukiho.name=萩原雪歩
 
 tile.ssutils.andesite_compressed.name=圧縮安山岩
 tile.ssutils.cobblestone_compressed.name=圧縮丸石
@@ -15,3 +16,5 @@ tile.ssutils.dirt_compressed.name=圧縮土
 tile.ssutils.granite_compressed.name=圧縮花崗岩
 tile.ssutils.netherrack_compressed.name=圧縮ネザーラック
 tile.ssutils.stone_compressed.name=圧縮石
+
+itemGroup.ssutils=SnowStep's Utilities

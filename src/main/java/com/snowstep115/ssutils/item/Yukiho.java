@@ -7,11 +7,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 
-public class RedFlowerCompressed extends Item {
-    public RedFlowerCompressed() {
-        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "red_flower_compressed"));
-        setUnlocalizedName("ssutils.red_flower_compressed");
-        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
+public class Yukiho extends Item {
+    public Yukiho() {
+        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, "yukiho"));
+        setUnlocalizedName("ssutils.yukiho");
     }
 
     public void process(ModelRegistryEvent event) {
