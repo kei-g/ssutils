@@ -19,21 +19,35 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod.EventBusSubscriber
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        SnowStepUtils.LOGGER.info("CommonProxy.preInit");
         ModItems.init();
     }
 
     public void init(FMLInitializationEvent event) {
-        SnowStepUtils.LOGGER.info("CommonProxy.init");
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        SnowStepUtils.LOGGER.info("CommonProxy.postInit");
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        SnowStepUtils.LOGGER.info("CommonProxy.registerBlocks");
+        ModItems.STONE_COMPRESSED.processBlock(event);
+        ModItems.STONE_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.GRANITE_COMPRESSED.processBlock(event);
+        ModItems.GRANITE_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.DIORITE_COMPRESSED.processBlock(event);
+        ModItems.DIORITE_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.ANDESITE_COMPRESSED.processBlock(event);
+        ModItems.ANDESITE_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.COBBLESTONE_COMPRESSED.processBlock(event);
+        ModItems.COBBLESTONE_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.DIRT_COMPRESSED.processBlock(event);
+        ModItems.DIRT_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.NETHERRACK_COMPRESSED.processBlock(event);
+        ModItems.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
+    }
+
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
         ModItems.STONE_COMPRESSED.process(event);
         ModItems.STONE_DOUBLE_COMPRESSED.process(event);
         ModItems.GRANITE_COMPRESSED.process(event);
@@ -48,27 +62,8 @@ public class CommonProxy {
         ModItems.DIRT_DOUBLE_COMPRESSED.process(event);
         ModItems.NETHERRACK_COMPRESSED.process(event);
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.process(event);
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        SnowStepUtils.LOGGER.info("CommonProxy.registerItems");
-        event.getRegistry().register(ModItems.STONE_COMPRESSED);
-        event.getRegistry().register(ModItems.STONE_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.GRANITE_COMPRESSED);
-        event.getRegistry().register(ModItems.GRANITE_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.DIORITE_COMPRESSED);
-        event.getRegistry().register(ModItems.DIORITE_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.ANDESITE_COMPRESSED);
-        event.getRegistry().register(ModItems.ANDESITE_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.COBBLESTONE_COMPRESSED);
-        event.getRegistry().register(ModItems.COBBLESTONE_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.DIRT_COMPRESSED);
-        event.getRegistry().register(ModItems.DIRT_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.NETHERRACK_COMPRESSED);
-        event.getRegistry().register(ModItems.NETHERRACK_DOUBLE_COMPRESSED);
-        event.getRegistry().register(ModItems.RED_FLOWER_COMPRESSED);
-        event.getRegistry().register(ModItems.WHEAT_SEEDS_COMPRESSED);
-        event.getRegistry().register(ModItems.YUKIHO);
+        ModItems.RED_FLOWER_COMPRESSED.process(event);
+        ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
+        ModItems.YUKIHO.process(event);
     }
 }

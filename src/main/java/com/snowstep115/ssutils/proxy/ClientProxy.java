@@ -17,7 +17,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        SnowStepUtils.LOGGER.info("ClientProxy.preInit");
     }
 
     /***
@@ -27,7 +26,6 @@ public class ClientProxy extends CommonProxy {
      */
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
-        SnowStepUtils.LOGGER.info("ClientProxy.registerModels");
         ModItems.STONE_COMPRESSED.process(event);
         ModItems.STONE_DOUBLE_COMPRESSED.process(event);
         ModItems.GRANITE_COMPRESSED.process(event);

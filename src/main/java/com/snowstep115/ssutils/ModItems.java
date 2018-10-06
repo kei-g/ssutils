@@ -2,6 +2,7 @@ package com.snowstep115.ssutils;
 
 import com.snowstep115.ssutils.item.DirtCompressed;
 import com.snowstep115.ssutils.item.DirtDoubleCompressed;
+import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
 import com.snowstep115.ssutils.item.RockCompressed;
@@ -23,11 +24,11 @@ public class ModItems {
     public static ItemBlockBase GRANITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase NETHERRACK_COMPRESSED;
     public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;
-    public static final RedFlowerCompressed RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
+    public static final ItemBase RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
-    public static final WheatSeedsCompressed WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
-    public static final Yukiho YUKIHO = new Yukiho();
+    public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
+    public static final ItemBase YUKIHO = new Yukiho();
 
     public static void init() {
         try {
@@ -45,8 +46,8 @@ public class ModItems {
             NETHERRACK_DOUBLE_COMPRESSED = new RockDoubleCompressed("netherrack");
             STONE_COMPRESSED = new RockCompressed("stone");
             STONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("stone");
-        } catch (Exception e) {
-            SnowStepUtils.LOGGER.info(e.getMessage());
+        } catch (Throwable exception) {
+            SnowStepUtils.LOGGER.info(exception.getMessage());
         }
     }
 }

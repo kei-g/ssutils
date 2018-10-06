@@ -4,6 +4,7 @@ import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.BlockCompressed;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -20,10 +21,16 @@ public class ItemBlockBase extends ItemBlock {
         String unlocalizedName = SnowStepUtils.MODID + "." + name;
         setUnlocalizedName(unlocalizedName);
         block.setUnlocalizedName(unlocalizedName);
+
+        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
     }
 
-    public void process(RegistryEvent.Register<Block> event) {
+    public void processBlock(RegistryEvent.Register<Block> event) {
         event.getRegistry().register(block);
+    }
+
+    public void process(RegistryEvent.Register<Item> event) {
+        event.getRegistry().register(this);
     }
 
     public void process(ModelRegistryEvent event) {
