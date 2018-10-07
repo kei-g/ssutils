@@ -28,7 +28,7 @@ public class ModItems {
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
     public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
-    public static final ItemBase YUKIHO = new Yukiho();
+    public static final Yukiho YUKIHO = new Yukiho();
 
     public static void init() {
         try {
