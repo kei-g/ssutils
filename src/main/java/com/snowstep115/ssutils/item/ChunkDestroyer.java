@@ -94,6 +94,8 @@ public class ChunkDestroyer extends ItemBase {
                 }
             }));
         }
-        return ActionResult.newResult(EnumActionResult.SUCCESS, ItemStack.EMPTY);
+        ItemStack item = playerIn.getHeldItem(handIn);
+        item.shrink(1);
+        return ActionResult.newResult(EnumActionResult.SUCCESS, item);
     }
 }
