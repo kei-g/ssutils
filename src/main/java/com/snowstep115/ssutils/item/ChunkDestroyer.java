@@ -52,10 +52,8 @@ public class ChunkDestroyer extends ItemBase {
                 BlockPos pos = new BlockPos(sx + x, sy - y, sz + z);
                 IBlockState state = world.getBlockState(pos);
                 Block block = state.getBlock();
-                if (0 <= block.getBlockHardness(state, world, pos)) {
-                    world.destroyBlock(pos, false);
-                    block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
-                }
+                world.destroyBlock(pos, false);
+                block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
             }
             if (z < 16) {
                 z++;
