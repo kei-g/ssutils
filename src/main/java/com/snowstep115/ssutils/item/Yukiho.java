@@ -12,9 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
@@ -79,27 +76,5 @@ public class Yukiho extends ItemPickaxe {
             block.dropBlockAsItem(world, pos, st, FORTUNE_LEVEL);
         }
         return result;
-    }
-
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        for (int x = -16; x < 16; x++) {
-            for (int y = -16; y < 16; y++) {
-                for (int z = -16; z < 16; z++) {
-                    BlockPos pos = new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z);
-                    IBlockState state = worldIn.getBlockState(pos);
-                    Block block = state.getBlock();
-                    String name = block.getRegistryName().getResourcePath();
-                    if (name.equals("log")) {
-                        worldIn.destroyBlock(pos, true);
-                    } else if (name.equals("leaves")) {
-                        worldIn.destroyBlock(pos, false);
-                        block.dropBlockAsItem(worldIn, pos, state, FORTUNE_LEVEL);
-                    }
-                }
-            }
-        }
-        ItemStack item = playerIn.getHeldItem(handIn);
-        return ActionResult.newResult(EnumActionResult.SUCCESS, item);
     }
 }

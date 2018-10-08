@@ -3,6 +3,7 @@ package com.snowstep115.ssutils;
 import com.snowstep115.ssutils.item.ChunkDestroyer;
 import com.snowstep115.ssutils.item.DirtCompressed;
 import com.snowstep115.ssutils.item.DirtDoubleCompressed;
+import com.snowstep115.ssutils.item.HarukaAxe;
 import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
@@ -24,6 +25,7 @@ public class ModItems {
     public static ItemBlockBase DIRT_DOUBLE_COMPRESSED;
     public static ItemBlockBase GRANITE_COMPRESSED;
     public static ItemBlockBase GRANITE_DOUBLE_COMPRESSED;
+    public static final HarukaAxe HARUKA_AXE = new HarukaAxe();
     public static ItemBlockBase NETHERRACK_COMPRESSED;
     public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;
     public static final ItemBase RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
