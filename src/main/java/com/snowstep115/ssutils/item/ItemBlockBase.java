@@ -21,8 +21,6 @@ public class ItemBlockBase extends ItemBlock {
         String unlocalizedName = SnowStepUtils.MODID + "." + name;
         setUnlocalizedName(unlocalizedName);
         block.setUnlocalizedName(unlocalizedName);
-
-        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
     }
 
     public void processBlock(RegistryEvent.Register<Block> event) {
