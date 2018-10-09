@@ -1,10 +1,13 @@
 package com.snowstep115.ssutils.proxy;
 
 import com.snowstep115.ssutils.SnowStepUtils;
+import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import com.snowstep115.ssutils.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -20,12 +23,17 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         ModItems.init();
+        TileEntity.register(ModItems.SNOWCHEST.getRegistryName().toString(), TileEntitySnowChest.class);
     }
 
     public void init(FMLInitializationEvent event) {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+    }
+
+    public World getClientWorld() {
+        return null;
     }
 
     @SubscribeEvent
@@ -44,6 +52,7 @@ public class CommonProxy {
         ModItems.DIRT_DOUBLE_COMPRESSED.processBlock(event);
         ModItems.NETHERRACK_COMPRESSED.processBlock(event);
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.SNOWCHEST.processBlock(event);
     }
 
     @SubscribeEvent
@@ -65,6 +74,7 @@ public class CommonProxy {
         ModItems.CHUNK_DESTROYER.process(event);
         ModItems.HARUKA_AXE.process(event);
         ModItems.RED_FLOWER_COMPRESSED.process(event);
+        ModItems.SNOWCHEST.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
     }

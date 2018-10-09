@@ -7,6 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBase extends Item {
     public ItemBase(String name) {
@@ -19,6 +21,7 @@ public class ItemBase extends Item {
         event.getRegistry().register(this);
     }
 
+    @SideOnly(Side.CLIENT)
     public void process(ModelRegistryEvent event) {
         ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }

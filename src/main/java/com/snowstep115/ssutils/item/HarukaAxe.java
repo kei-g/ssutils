@@ -20,6 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HarukaAxe extends ItemAxe {
     private static final String NAME = "haruka_axe";
@@ -36,6 +38,7 @@ public class HarukaAxe extends ItemAxe {
         event.getRegistry().register(this);
     }
 
+    @SideOnly(Side.CLIENT)
     public void process(ModelRegistryEvent event) {
         ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }

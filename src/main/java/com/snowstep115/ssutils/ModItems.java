@@ -6,6 +6,7 @@ import com.snowstep115.ssutils.item.DirtDoubleCompressed;
 import com.snowstep115.ssutils.item.HarukaAxe;
 import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
+import com.snowstep115.ssutils.item.ItemSnowChest;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
 import com.snowstep115.ssutils.item.RockCompressed;
 import com.snowstep115.ssutils.item.RockDoubleCompressed;
@@ -29,6 +30,7 @@ public class ModItems {
     public static ItemBlockBase NETHERRACK_COMPRESSED;
     public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;
     public static final ItemBase RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
+    public static final ItemSnowChest SNOWCHEST = new ItemSnowChest();
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
     public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();

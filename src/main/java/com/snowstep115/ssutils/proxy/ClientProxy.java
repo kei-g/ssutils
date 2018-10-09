@@ -2,9 +2,8 @@ package com.snowstep115.ssutils.proxy;
 
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.ModItems;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +16,11 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+    }
+
+    @Override
+    public World getClientWorld() {
+        return Minecraft.getMinecraft().world;
     }
 
     /***
@@ -43,6 +47,7 @@ public class ClientProxy extends CommonProxy {
         ModItems.CHUNK_DESTROYER.process(event);
         ModItems.HARUKA_AXE.process(event);
         ModItems.RED_FLOWER_COMPRESSED.process(event);
+        ModItems.SNOWCHEST.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
     }

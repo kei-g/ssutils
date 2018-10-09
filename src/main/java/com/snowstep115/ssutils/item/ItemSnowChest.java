@@ -1,7 +1,7 @@
 package com.snowstep115.ssutils.item;
 
 import com.snowstep115.ssutils.SnowStepUtils;
-import com.snowstep115.ssutils.block.BlockCompressed;
+import com.snowstep115.ssutils.block.BlockSnowChest;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -13,16 +13,14 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemBlockBase extends ItemBlock {
-    protected ItemBlockBase(BlockCompressed block, String name) {
-        super(block);
+public class ItemSnowChest extends ItemBlock {
+    private static final String NAME = "snowchest";
 
-        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, name));
-        block.setRegistryName(getRegistryName());
-
-        String unlocalizedName = SnowStepUtils.MODID + "." + name;
-        setUnlocalizedName(unlocalizedName);
-        block.setUnlocalizedName(unlocalizedName);
+    public ItemSnowChest() {
+        super(new BlockSnowChest());
+        setRegistryName(block.getRegistryName());
+        setUnlocalizedName(SnowStepUtils.MODID + "." + NAME);
+        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
     }
 
     public void processBlock(RegistryEvent.Register<Block> event) {

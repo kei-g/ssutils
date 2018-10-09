@@ -25,6 +25,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Yukiho extends ItemPickaxe {
     public static final int FORTUNE_LEVEL = 3;
@@ -42,6 +44,7 @@ public class Yukiho extends ItemPickaxe {
         event.getRegistry().register(this);
     }
 
+    @SideOnly(Side.CLIENT)
     public void process(ModelRegistryEvent event) {
         ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
@@ -89,9 +92,14 @@ public class Yukiho extends ItemPickaxe {
             EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntity tile = worldIn.getTileEntity(pos);
         if (tile != null) {
-            NBTTagCompound tag = tile.serializeNBT();
-            String msg = String.format("[%s] %s", worldIn.isRemote ? "REMOTE" : "LOCAL", tag);
-            player.sendStatusMessage(new TextComponentString(msg), false);
+            try {
+                NBTTagCompound tag = tile.serializeNBT();
+                String msg = String.format("[%s] %s", worldIn.isRemote ? "REMOTE" : "LOCAL", tag);
+                player.sendStatusMessage(new TextComponentString(msg), false);
+            } catch (Throwable exception) {
+                String msg = exception.toString();
+                player.sendStatusMessage(new TextComponentString(msg), false);
+            }
         }
         return EnumActionResult.SUCCESS;
     }
