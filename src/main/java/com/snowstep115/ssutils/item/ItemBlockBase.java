@@ -1,7 +1,7 @@
 package com.snowstep115.ssutils.item;
 
 import com.snowstep115.ssutils.SnowStepUtils;
-import com.snowstep115.ssutils.block.BlockCompressed;
+import com.snowstep115.ssutils.block.BlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBlockBase extends ItemBlock {
-    protected ItemBlockBase(BlockCompressed block, String name) {
+    protected ItemBlockBase(BlockBase block, String name) {
         super(block);
 
         setRegistryName(new ResourceLocation(SnowStepUtils.MODID, name));
