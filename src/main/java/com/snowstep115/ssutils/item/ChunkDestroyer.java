@@ -1,6 +1,7 @@
 package com.snowstep115.ssutils.item;
 
 import com.snowstep115.ssutils.SnowStepUtils;
+import java.util.function.Consumer;
 import java.util.LinkedList;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
@@ -36,7 +37,9 @@ public class ChunkDestroyer extends ItemBase {
     private class Instance implements IInstance {
         private final IFinalizer finalizer;
         private final EntityPlayer player;
-        private int sx, sy, sz, y, z;
+        private final int sx, sy, sz;
+        private Consumer<World> delegate;
+        private int y, z;
 
         public Instance(EntityPlayer player, IFinalizer finalizer) {
             this.finalizer = finalizer;
@@ -44,8 +47,42 @@ public class ChunkDestroyer extends ItemBase {
             this.sx = (((int) player.posX + 15) & ~15) - 16;
             this.sy = (int) player.posY + 1;
             this.sz = (((int) player.posZ + 15) & ~15) - 16;
+            this.delegate = (w) -> { guard(w); };
             this.y = 0;
             this.z = 0;
+        }
+
+        private void destroy(World world) {
+            for (int x = 0; x < 16; x++) {
+                BlockPos pos = new BlockPos(sx + x, sy - y, sz + z);
+                IBlockState state = world.getBlockState(pos);
+                Block block = state.getBlock();
+                world.destroyBlock(pos, false);
+                block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
+            }
+            if (z < 16) {
+                z++;
+            }
+            if (z == 16) {
+                z = 0;
+                y++;
+            }
+            if (y == sy) {
+                finalizer.run(this);
+            }
+        }
+
+        private void guard(World world) {
+            IBlockState stone = Block.getBlockFromName("minecraft:stone").getDefaultState();
+            for (int y = 0; y < sy; y++) {
+                for (int i = 0; i < 16; i++) {
+                    replaceIfLavaOrWater(world, sx + i, sy - y, sz - 1, stone);
+                    replaceIfLavaOrWater(world, sx + i, sy - y, sz + 16, stone);
+                    replaceIfLavaOrWater(world, sx - 1, sy - y, sz + i, stone);
+                    replaceIfLavaOrWater(world, sx + 16, sy - y, sz + i, stone);
+                }
+            }
+            this.delegate = (w) -> { destroy(w); };
         }
 
         private void replaceIfLavaOrWater(World world, int x, int y, int z, IBlockState stone) {
@@ -76,42 +113,12 @@ public class ChunkDestroyer extends ItemBase {
             }
         }
 
-        private void guard(World world) {
-            IBlockState stone = Block.getBlockFromName("minecraft:stone").getDefaultState();
-            for (int y = 0; y < sy; y++) {
-                for (int i = 0; i < 16; i++) {
-                    replaceIfLavaOrWater(world, sx + i, sy - y, sz - 1, stone);
-                    replaceIfLavaOrWater(world, sx + i, sy - y, sz + 16, stone);
-                    replaceIfLavaOrWater(world, sx - 1, sy - y, sz + i, stone);
-                    replaceIfLavaOrWater(world, sx + 16, sy - y, sz + i, stone);
-                }
-            }
-        }
-
         public void run(World world) {
-            if (y == 0 && z == 0) {
-                guard(world);
-            }
-            for (int x = 0; x < 16; x++) {
-                BlockPos pos = new BlockPos(sx + x, sy - y, sz + z);
-                IBlockState state = world.getBlockState(pos);
-                Block block = state.getBlock();
-                world.destroyBlock(pos, false);
-                block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
-            }
-            if (z < 16) {
-                z++;
-            }
-            if (z == 16) {
-                z = 0;
-                y++;
-            }
-            if (y == sy) {
-                finalizer.run(this);
-            }
+            this.delegate.accept(world);
         }
     }
 
+    private static LinkedList<IInstance> finalizing = new LinkedList<IInstance>();
     private static LinkedList<IInstance> instances = new LinkedList<IInstance>();
 
     @SubscribeEvent
@@ -120,6 +127,10 @@ public class ChunkDestroyer extends ItemBase {
             for (IInstance instance : instances) {
                 instance.run(event.world);
             }
+            for (IInstance instance : finalizing) {
+                instances.remove(instance);
+            }
+            finalizing.clear();
         }
     }
 
@@ -132,9 +143,7 @@ public class ChunkDestroyer extends ItemBase {
         synchronized (instances) {
             instances.add(new Instance(playerIn, new IFinalizer() {
                 public void run(IInstance instance) {
-                    synchronized (instances) {
-                        instances.remove(instance);
-                    }
+                    finalizing.add(instance);
                 }
             }));
         }
