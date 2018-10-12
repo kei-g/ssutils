@@ -105,8 +105,12 @@ public class Yukiho extends ItemPickaxe {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ItemStack item = playerIn.getHeldItem(handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        world.getPlayers(EntityPlayer.class, (p) -> {
+            player.sendStatusMessage(new TextComponentString(p.getName()), false);
+            return true;
+        });
+        ItemStack item = player.getHeldItem(hand);
         return ActionResult.newResult(EnumActionResult.SUCCESS, item);
     }
 }
