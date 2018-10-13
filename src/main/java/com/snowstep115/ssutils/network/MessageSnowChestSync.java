@@ -38,7 +38,7 @@ public class MessageSnowChestSync implements IMessage {
             this.stacks = NonNullList.<ItemStack>withSize(count, ItemStack.EMPTY);
             for (int i = 0; i < count; i++) {
                 ItemStack stack = ByteBufUtils.readItemStack(buf);
-                this.stacks.set(i, stack);
+                this.stacks.set(i, stack != null ? stack : ItemStack.EMPTY);
             }
         }
     }
@@ -54,7 +54,7 @@ public class MessageSnowChestSync implements IMessage {
         } else {
             buf.writeInt(this.stacks.size());
             for (ItemStack stack : this.stacks) {
-                ByteBufUtils.writeItemStack(buf, stack);
+                ByteBufUtils.writeItemStack(buf, stack != null ? stack : ItemStack.EMPTY);
             }
         }
     }

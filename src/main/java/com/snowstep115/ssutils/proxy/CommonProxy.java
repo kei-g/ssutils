@@ -1,8 +1,9 @@
 package com.snowstep115.ssutils.proxy;
 
 import com.snowstep115.ssutils.SnowStepUtils;
-import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import com.snowstep115.ssutils.ModItems;
+import com.snowstep115.ssutils.network.GuiHandler;
+import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +28,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+        NetworkRegistry.INSTANCE.registerGuiHandler(SnowStepUtils.INSTANCE, new GuiHandler());
     }
 
     public void postInit(FMLPostInitializationEvent event) {

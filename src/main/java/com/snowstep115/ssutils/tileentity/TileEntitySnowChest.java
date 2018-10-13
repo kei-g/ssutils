@@ -2,8 +2,8 @@ package com.snowstep115.ssutils.tileentity;
 
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.BlockSnowChest;
+import com.snowstep115.ssutils.container.ContainerSnowChest;
 import com.snowstep115.ssutils.network.MessageSnowChestSync;
-import com.snowstep115.ssutils.util.GrowableItemStackList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -22,38 +22,45 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class TileEntitySnowChest extends TileEntityLockableLoot {
     private boolean empty;
-    private GrowableItemStackList items = new GrowableItemStackList(1);
+    private final NonNullList<ItemStack> items = NonNullList.<ItemStack>withSize(13 * 9, ItemStack.EMPTY);
+
+    private void fillEmpty() {
+        this.empty = true;
+        for (int i = 0; i < this.items.size(); i++) {
+            this.items.set(i, ItemStack.EMPTY);
+        }
+    }
+
+    public TileEntitySnowChest() {
+        fillEmpty();
+    }
 
     public void receiveSyncMessage(NonNullList<ItemStack> items) {
-        int count = items.size();
-        this.empty = count == 0;
-        this.items.clear();
-        if (0 < count) {
-            this.items = new GrowableItemStackList(count);
-            for (ItemStack item : items) {
-                this.items.add(item);
+        boolean empty = true;
+        for (int i = 0; i < this.items.size() && i < items.size(); i++) {
+            ItemStack item = items.get(i);
+            this.items.set(i, item != null ? item : ItemStack.EMPTY);
+            if (!this.items.get(i).isEmpty()) {
+                empty = false;
             }
         }
+        this.empty = empty;
     }
 
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
-        this.empty = true;
+        fillEmpty();
         if (tag.hasKey("items", NBT.TAG_LIST)) {
             NBTTagList items = tag.getTagList("items", NBT.TAG_COMPOUND);
             int count = items.tagCount();
-            this.items = new GrowableItemStackList(count);
             for (int i = 0; i < count; i++) {
                 NBTTagCompound item = items.getCompoundTagAt(i);
                 ItemStack stack = new ItemStack(item);
-                if (stack.isEmpty()) {
-                    continue;
+                this.items.set(i, stack != null ? stack : ItemStack.EMPTY);
+                if (!this.items.get(i).isEmpty()) {
+                    this.empty = false;
                 }
-                this.empty = false;
-                this.items.add(stack);
             }
-        } else {
-            this.items = new GrowableItemStackList(1);
         }
     }
 
@@ -61,9 +68,6 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         tag = super.writeToNBT(tag);
         NBTTagList items = new NBTTagList();
         for (ItemStack item : this.items) {
-            if (item.isEmpty()) {
-                continue;
-            }
             items.appendTag(item.serializeNBT());
         }
         if (0 < items.tagCount()) {
@@ -72,8 +76,8 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         return tag;
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-        return null;
+    public Container createContainer(InventoryPlayer inventoryPlayer, EntityPlayer player) {
+        return new ContainerSnowChest(this, inventoryPlayer);
     }
 
     public String getGuiID() {
@@ -81,7 +85,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
     }
 
     protected NonNullList<ItemStack> getItems() {
-        return items;
+        return this.items;
     }
 
     public String getName() {
@@ -93,7 +97,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
     }
 
     public int getSizeInventory() {
-        return this.items.size() + 1;
+        return this.items.size();
     }
 
     public boolean isEmpty() {
@@ -105,11 +109,17 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
             this.empty = false;
         }
         this.items.set(slot, item);
-        markDirty();
     }
 
     public void markDirty() {
         super.markDirty();
+        boolean empty = true;
+        for (ItemStack item : this.items) {
+            if (!item.isEmpty()) {
+                empty = false;
+            }
+        }
+        this.empty = empty;
         MessageSnowChestSync msg = new MessageSnowChestSync(this, this.items);
         TargetPoint tp = new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 128);
         SnowStepUtils.PACKET_HANDLER.sendToAllAround(msg, tp);
