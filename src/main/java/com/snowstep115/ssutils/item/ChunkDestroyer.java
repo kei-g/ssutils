@@ -16,6 +16,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
@@ -41,33 +42,37 @@ public class ChunkDestroyer extends ItemBase {
         private Consumer<World> delegate;
         private int y, z;
 
-        public Instance(EntityPlayer player, IFinalizer finalizer) {
+        public Instance(World world, EntityPlayer player, IFinalizer finalizer) {
+            BlockPos bpos = player.getPosition();
+            ChunkPos cpos = new ChunkPos(bpos);
             this.finalizer = finalizer;
             this.player = player;
-            this.sx = (((int) player.posX + 15) & ~15) - 16;
-            this.sy = (int) player.posY + 1;
-            this.sz = (((int) player.posZ + 15) & ~15) - 16;
-            this.delegate = (w) -> { guard(w); };
+            this.sx = cpos.getXStart();
+            this.sy = bpos.getY() + 1;
+            this.sz = cpos.getZStart();
+            this.delegate = (w) -> {
+                guard(w);
+            };
             this.y = 0;
             this.z = 0;
         }
 
         private void destroy(World world) {
             for (int x = 0; x < 16; x++) {
-                BlockPos pos = new BlockPos(sx + x, sy - y, sz + z);
+                BlockPos pos = new BlockPos(this.sx + x, this.sy - this.y, this.sz + this.z);
                 IBlockState state = world.getBlockState(pos);
                 Block block = state.getBlock();
                 world.destroyBlock(pos, false);
                 block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
             }
-            if (z < 16) {
-                z++;
+            if (this.z < 16) {
+                this.z++;
             }
-            if (z == 16) {
-                z = 0;
-                y++;
+            if (this.z == 16) {
+                this.z = 0;
+                this.y++;
             }
-            if (y == sy) {
+            if (this.y == this.sy) {
                 finalizer.run(this);
             }
         }
@@ -82,31 +87,17 @@ public class ChunkDestroyer extends ItemBase {
                     replaceIfLavaOrWater(world, sx + 16, sy - y, sz + i, stone);
                 }
             }
-            this.delegate = (w) -> { destroy(w); };
+            this.delegate = (w) -> {
+                destroy(w);
+            };
         }
 
         private void replaceIfLavaOrWater(World world, int x, int y, int z, IBlockState stone) {
             BlockPos pos = new BlockPos(x, y, z);
             IBlockState state = world.getBlockState(pos);
-            if (state == null) {
-                player.sendStatusMessage(new TextComponentString(String.format("%s => unable to getBlockState", pos)), false);
-                return;
-            }
             Block block = state.getBlock();
-            if (block == null) {
-                player.sendStatusMessage(new TextComponentString(String.format("%s => unable to getBlock", pos)), false);
-                return;
-            }
             ResourceLocation res = block.getRegistryName();
-            if (res == null) {
-                player.sendStatusMessage(new TextComponentString(String.format("%s => unable to getRegistryName", pos)), false);
-                return;
-            }
             String name = res.getResourcePath();
-            if (name == null) {
-                player.sendStatusMessage(new TextComponentString(String.format("%s => %s, unable to getResourcePath", pos, res)), false);
-                return;
-            }
             if (name.equals("flowing_lava") || name.equals("flowing_water") || name.equals("lava")
                     || name.equals("water")) {
                 world.setBlockState(pos, stone);
@@ -135,13 +126,13 @@ public class ChunkDestroyer extends ItemBase {
     }
 
     public ChunkDestroyer() {
-        super("chunk_destroyer");
+        super("chunkdestroyer");
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         synchronized (instances) {
-            instances.add(new Instance(playerIn, new IFinalizer() {
+            instances.add(new Instance(worldIn, playerIn, new IFinalizer() {
                 public void run(IInstance instance) {
                     finalizing.add(instance);
                 }
