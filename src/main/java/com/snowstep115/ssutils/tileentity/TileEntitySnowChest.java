@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class TileEntitySnowChest extends TileEntityLockableLoot {
     private boolean empty;
-    private final NonNullList<ItemStack> items = NonNullList.<ItemStack>withSize(13 * 9, ItemStack.EMPTY);
+    private final NonNullList<ItemStack> items = NonNullList.<ItemStack>withSize(130, ItemStack.EMPTY);
 
     private void fillEmpty() {
         this.empty = true;

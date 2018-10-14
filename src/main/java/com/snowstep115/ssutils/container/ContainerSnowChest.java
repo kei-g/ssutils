@@ -17,23 +17,25 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerSnowChest extends Container {
     public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer) {
         int yOffset = 8;
-        for (int y = 0; y < 9; y++, yOffset += 18) {
+        for (int y = 0; y < 10; y++, yOffset += 18) {
             for (int x = 0; x < 13; x++) {
                 addSlotToContainer(new Slot(snowChestInventory, x + y * 13, 12 + x * 18, yOffset));
             }
         }
 
         // Hotbar
-        yOffset = 232;
-        for (int x = 0; x < 9; x++) {
-            addSlotToContainer(new Slot(inventoryPlayer, x, 48 + x * 18, yOffset));
+        yOffset = 196;
+        for (int y = 0; y < 3; y++, yOffset += 18) {
+            for (int x = 0; x < 3; x++) {
+                addSlotToContainer(new Slot(inventoryPlayer, x + y * 3, 12 + x * 18, yOffset));
+            }
         }
 
         // Inventory
-        yOffset = 174;
+        yOffset = 196;
         for (int y = 0; y < 3; y++, yOffset += 18) {
             for (int x = 0; x < 9; x++) {
-                addSlotToContainer(new Slot(inventoryPlayer, 9 + x + y * 9, 48 + x * 18, yOffset));
+                addSlotToContainer(new Slot(inventoryPlayer, 9 + x + y * 9, 84 + x * 18, yOffset));
             }
         }
     }
@@ -49,18 +51,18 @@ public class ContainerSnowChest extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index) {
-        if (index < 13 * 9) {
+        if (index < 130) {
             IInventory snowChestInventory = getSlot(0).inventory;
             ItemStack stack = snowChestInventory.getStackInSlot(index);
-            if (mergeItemStack(stack, 13 * 9, 13 * 9 + 36, false)) {
+            if (mergeItemStack(stack, 130, 166, false)) {
                 snowChestInventory.removeStackFromSlot(index);
                 snowChestInventory.markDirty();
             }
         } else {
-            IInventory inventory = getSlot(13 * 9).inventory;
-            ItemStack stack = inventory.getStackInSlot(index - 13 * 9);
-            if (mergeItemStack(stack, 0, 13 * 9, false)) {
-                inventory.removeStackFromSlot(index - 13 * 9);
+            IInventory inventory = getSlot(130).inventory;
+            ItemStack stack = inventory.getStackInSlot(index - 130);
+            if (mergeItemStack(stack, 0, 130, false)) {
+                inventory.removeStackFromSlot(index - 130);
                 inventory.markDirty();
             }
         }
