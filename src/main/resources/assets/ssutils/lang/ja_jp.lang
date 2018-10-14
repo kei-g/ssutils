@@ -1,7 +1,7 @@
 item.ssutils.chunkdestroyer.name=チャンク破壊器
 item.ssutils.haruka_axe.name=天海春香の斧
 item.ssutils.red_flower_compressed.name=圧縮ポピー
-item.ssutils.snowchest.name=雪チェスト
+item.ssutils.snowchest.name=スノーチェスト
 item.ssutils.wheat_seeds_compressed.name=圧縮された種
 item.ssutils.yukiho.name=萩原雪歩
 
@@ -17,7 +17,7 @@ tile.ssutils.granite_compressed.name=圧縮花崗岩
 tile.ssutils.granite_double_compressed.name=二重圧縮花崗岩
 tile.ssutils.netherrack_compressed.name=圧縮ネザーラック
 tile.ssutils.netherrack_double_compressed.name=二重圧縮ネザーラック
-tile.ssutils.snowchest.name=雪チェスト
+tile.ssutils.snowchest.name=スノーチェスト
 tile.ssutils.stone_compressed.name=圧縮石
 tile.ssutils.stone_double_compressed.name=二重圧縮石
 
