@@ -55,7 +55,6 @@ public class CommonProxy {
         ModItems.NETHERRACK_COMPRESSED.processBlock(event);
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
         ModItems.SNOWCHEST.processBlock(event);
-        ModItems.TRANSFER.processBlock(event);
     }
 
     @SubscribeEvent
@@ -78,7 +77,6 @@ public class CommonProxy {
         ModItems.HARUKA_AXE.process(event);
         ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.SNOWCHEST.process(event);
-        ModItems.TRANSFER.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
     }

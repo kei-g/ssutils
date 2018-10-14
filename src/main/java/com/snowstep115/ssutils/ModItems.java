@@ -7,7 +7,6 @@ import com.snowstep115.ssutils.item.HarukaAxe;
 import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
 import com.snowstep115.ssutils.item.ItemSnowChest;
-import com.snowstep115.ssutils.item.ItemTransfer;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
 import com.snowstep115.ssutils.item.RockCompressed;
 import com.snowstep115.ssutils.item.RockDoubleCompressed;
@@ -34,7 +33,6 @@ public class ModItems {
     public static final ItemSnowChest SNOWCHEST = new ItemSnowChest();
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
-    public static ItemBlockBase TRANSFER;
     public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
     public static final Yukiho YUKIHO = new Yukiho();
 
@@ -54,7 +52,6 @@ public class ModItems {
             NETHERRACK_DOUBLE_COMPRESSED = new RockDoubleCompressed("netherrack");
             STONE_COMPRESSED = new RockCompressed("stone");
             STONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("stone");
-            TRANSFER = new ItemTransfer();
         } catch (Throwable exception) {
             SnowStepUtils.LOGGER.info(exception.getMessage());
         }
