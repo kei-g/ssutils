@@ -36,6 +36,7 @@ public class ChunkDestroyer extends ItemBase {
     }
 
     private class Instance implements IInstance {
+        private final IBlockState air;
         private final IFinalizer finalizer;
         private final EntityPlayer player;
         private final int sx, sy, sz;
@@ -43,6 +44,7 @@ public class ChunkDestroyer extends ItemBase {
         private int y, z;
 
         public Instance(World world, EntityPlayer player, IFinalizer finalizer) {
+            this.air = Block.getBlockFromName("minecraft:air").getDefaultState();
             BlockPos bpos = player.getPosition();
             ChunkPos cpos = new ChunkPos(bpos);
             this.finalizer = finalizer;
@@ -62,7 +64,7 @@ public class ChunkDestroyer extends ItemBase {
                 BlockPos pos = new BlockPos(this.sx + x, this.sy - this.y, this.sz + this.z);
                 IBlockState state = world.getBlockState(pos);
                 Block block = state.getBlock();
-                world.destroyBlock(pos, false);
+                world.setBlockState(pos, air);
                 block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
             }
             if (this.z < 16) {
