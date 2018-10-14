@@ -109,8 +109,8 @@ public class BlockSnowChest extends Block implements ITileEntityProvider {
                 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         TileEntitySnowChest snowChest = (TileEntitySnowChest) world.getTileEntity(pos);
         player.openContainer = snowChest.createContainer(player.inventory, player);
-        player.openGui(SnowStepUtils.INSTANCE, GuiHandler.OPEN_GUI_SNOWCHEST_ID, world,
-                hand == EnumHand.OFF_HAND ? 1 : 0, 0, 0);
+        player.openGui(SnowStepUtils.INSTANCE, GuiHandler.OPEN_GUI_SNOWCHEST_ID, world, pos.getX(), pos.getY(),
+                pos.getZ());
         return true;
     }
 

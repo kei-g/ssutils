@@ -77,7 +77,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
     }
 
     public Container createContainer(InventoryPlayer inventoryPlayer, EntityPlayer player) {
-        return new ContainerSnowChest(this, inventoryPlayer);
+        return new ContainerSnowChest(this, inventoryPlayer, this.pos);
     }
 
     public String getGuiID() {

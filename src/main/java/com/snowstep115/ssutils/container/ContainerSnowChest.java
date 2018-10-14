@@ -3,6 +3,7 @@ package com.snowstep115.ssutils.container;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -11,11 +12,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerSnowChest extends Container {
-    public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer) {
+    private boolean closed = true;
+    private final BlockPos pos;
+
+    public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer, BlockPos pos) {
+        this.pos = pos;
+
+        // SnowChest
         int yOffset = 8;
         for (int y = 0; y < 10; y++, yOffset += 18) {
             for (int x = 0; x < 13; x++) {
@@ -47,6 +57,17 @@ public class ContainerSnowChest extends Container {
     @Override
     public boolean canInteractWith(EntityPlayer player) {
         return true;
+    }
+
+    @Override
+    public void onContainerClosed(EntityPlayer player) {
+        if (this.closed) {
+            this.closed = false;
+        } else {
+            World world = player.world;
+            world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.BLOCK_CHEST_CLOSE,
+                    SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+        }
     }
 
     @Override
