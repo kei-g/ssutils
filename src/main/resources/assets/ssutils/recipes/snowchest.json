@@ -1,0 +1,23 @@
+{
+    "type": "forge:ore_shaped",
+    "group": "recipe:ssutils:snowchest",
+    "pattern": [
+        "SSS",
+        "SdS",
+        "SSS"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:snow",
+            "data": 0
+        },
+        "d": {
+            "item": "minecraft:dye",
+            "data": 4
+        }
+    },
+    "result": {
+        "item": "ssutils:snowchest",
+        "data": 0
+    }
+}
