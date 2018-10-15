@@ -6,7 +6,6 @@ import com.snowstep115.ssutils.network.GuiHandler;
 import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,7 +13,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
@@ -34,7 +32,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 
-public class BlockSnowChest extends Block implements ITileEntityProvider {
+public class BlockSnowChest extends Block {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static final String NAME = "snowchest";
 
@@ -79,6 +77,7 @@ public class BlockSnowChest extends Block implements ITileEntityProvider {
         return meta;
     }
 
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer,
             ItemStack stack) {
         EnumFacing facing = placer.getHorizontalFacing().getOpposite();
@@ -114,23 +113,25 @@ public class BlockSnowChest extends Block implements ITileEntityProvider {
         return true;
     }
 
+    @Override
     public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tile,
             ItemStack stack) {
-        NBTTagCompound tileData = tile != null ? tile.serializeNBT() : null;
-        NBTTagList items = tileData != null ? tileData.getTagList("items", NBT.TAG_COMPOUND) : null;
-        if (items == null) {
+        if (tile instanceof TileEntitySnowChest) {
+            TileEntitySnowChest snowchest = (TileEntitySnowChest) tile;
+            snowchest.spawnAsEntity();
+            world.removeTileEntity(pos);
+        } else {
             super.harvestBlock(world, player, pos, state, tile, stack);
-            return;
         }
-        ItemStack chest = new ItemStack(Item.getByNameOrId(getRegistryName().toString()));
-        NBTTagCompound compound = new NBTTagCompound();
-        compound.setTag("items", items);
-        chest.setTagCompound(compound);
-        world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), chest));
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta) {
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileEntitySnowChest();
     }
 }

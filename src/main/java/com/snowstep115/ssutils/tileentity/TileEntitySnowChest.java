@@ -1,9 +1,11 @@
 package com.snowstep115.ssutils.tileentity;
 
+import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.BlockSnowChest;
 import com.snowstep115.ssutils.container.ContainerSnowChest;
 import com.snowstep115.ssutils.network.MessageSnowChestSync;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -47,6 +49,19 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         this.empty = empty;
     }
 
+    public void spawnAsEntity() {
+        ItemStack chest = new ItemStack(ModItems.SNOWCHEST);
+        if (!isEmpty()) {
+            NBTTagCompound compound = serializeNBT();
+            NBTTagList itemsTag = compound.getTagList("items", NBT.TAG_COMPOUND);
+            compound = new NBTTagCompound();
+            compound.setTag("items", itemsTag);
+            chest.setTagCompound(compound);
+        }
+        this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), chest));
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
         fillEmpty();
@@ -64,6 +79,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         tag = super.writeToNBT(tag);
         NBTTagList items = new NBTTagList();
@@ -76,34 +92,42 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         return tag;
     }
 
+    @Override
     public Container createContainer(InventoryPlayer inventoryPlayer, EntityPlayer player) {
         return new ContainerSnowChest(this, inventoryPlayer, this.pos);
     }
 
+    @Override
     public String getGuiID() {
         return SnowStepUtils.MODID + ":snowchest";
     }
 
+    @Override
     protected NonNullList<ItemStack> getItems() {
         return this.items;
     }
 
+    @Override
     public String getName() {
         return "";
     }
 
+    @Override
     public int getInventoryStackLimit() {
         return 64;
     }
 
+    @Override
     public int getSizeInventory() {
         return this.items.size();
     }
 
+    @Override
     public boolean isEmpty() {
         return this.empty;
     }
 
+    @Override
     public void setInventorySlotContents(int slot, ItemStack item) {
         if (this.empty && !item.isEmpty()) {
             this.empty = false;
@@ -111,6 +135,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         this.items.set(slot, item);
     }
 
+    @Override
     public void markDirty() {
         super.markDirty();
         boolean empty = true;
