@@ -3,6 +3,8 @@ package com.snowstep115.ssutils.proxy;
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.network.GuiHandler;
+import com.snowstep115.ssutils.tileentity.TileEntityExtractor;
+import com.snowstep115.ssutils.tileentity.TileEntityInserter;
 import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -24,6 +26,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         ModItems.init();
+        TileEntity.register(ModItems.EXTRACTOR.getRegistryName().toString(), TileEntityExtractor.class);
+        TileEntity.register(ModItems.INSERTER.getRegistryName().toString(), TileEntityInserter.class);
         TileEntity.register(ModItems.SNOWCHEST.getRegistryName().toString(), TileEntitySnowChest.class);
     }
 
@@ -54,6 +58,8 @@ public class CommonProxy {
         ModItems.DIRT_DOUBLE_COMPRESSED.processBlock(event);
         ModItems.NETHERRACK_COMPRESSED.processBlock(event);
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
+        ModItems.EXTRACTOR.processBlock(event);
+        ModItems.INSERTER.processBlock(event);
         ModItems.SNOWCHEST.processBlock(event);
     }
 
@@ -74,7 +80,9 @@ public class CommonProxy {
         ModItems.NETHERRACK_COMPRESSED.process(event);
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.process(event);
         ModItems.CHUNK_DESTROYER.process(event);
+        ModItems.EXTRACTOR.process(event);
         ModItems.HARUKA_AXE.process(event);
+        ModItems.INSERTER.process(event);
         ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.SNOWCHEST.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);

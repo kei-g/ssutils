@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "dummy=true": { "model": "ssutils:inserter" },
+        "dummy=false":  { "model": "ssutils:inserter" }
+    }
+}

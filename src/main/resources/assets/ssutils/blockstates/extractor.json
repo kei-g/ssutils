@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "dummy=true": { "model": "ssutils:extractor" },
+        "dummy=false":  { "model": "ssutils:extractor" }
+    }
+}
