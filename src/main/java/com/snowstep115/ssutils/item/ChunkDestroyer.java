@@ -3,6 +3,7 @@ package com.snowstep115.ssutils.item;
 import com.snowstep115.ssutils.SnowStepUtils;
 import java.util.function.Consumer;
 import java.util.LinkedList;
+import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
@@ -38,8 +39,12 @@ public class ChunkDestroyer extends ItemBase {
     private class Instance implements IInstance {
         private final IBlockState air;
         private final IFinalizer finalizer;
+        private final boolean isSlimeChunk;
         private final EntityPlayer player;
+        private final IBlockState stoneslab;
         private final int sx, sy, sz;
+        private final IBlockState torch;
+
         private Consumer<World> delegate;
         private int y, z;
 
@@ -47,11 +52,17 @@ public class ChunkDestroyer extends ItemBase {
             this.air = Block.getBlockFromName("minecraft:air").getDefaultState();
             BlockPos bpos = player.getPosition();
             ChunkPos cpos = new ChunkPos(bpos);
+            Random rnd = new Random(world.getSeed() + (long) (cpos.x * cpos.x * 0x4c1906) + (long) (cpos.x * 0x5ac0db)
+                    + (long) (cpos.z * cpos.z) * 0x4307a7L + (long) (cpos.z * 0x5f24f) ^ 0x3ad8025f);
             this.finalizer = finalizer;
+            this.isSlimeChunk = rnd.nextInt(10) == 0;
             this.player = player;
+            this.stoneslab = Block.getBlockFromName("minecraft:stone_slab").getStateFromMeta(8);
             this.sx = cpos.getXStart();
             this.sy = bpos.getY() + 1;
             this.sz = cpos.getZStart();
+            this.torch = Block.getBlockFromName("minecraft:torch").getDefaultState();
+
             this.delegate = (w) -> {
                 guard(w);
             };
@@ -59,12 +70,32 @@ public class ChunkDestroyer extends ItemBase {
             this.z = 0;
         }
 
+        private void construct(World world) {
+            for (int y = 11; y <= 38; y += 3) {
+                for (int x = 0; x < 16; x++) {
+                    for (int z = 0; z < 16; z++) {
+                        BlockPos pos = new BlockPos(this.sx + x, y, this.sz + z);
+                        world.setBlockState(pos, this.stoneslab);
+                    }
+                }
+            }
+            for (int y = 12; y <= 39; y += 3) {
+                for (int x = 3; x <= 12; x += 3) {
+                    for (int z = 3; z <= 12; z += 3) {
+                        BlockPos pos = new BlockPos(this.sx + x, y, this.sz + z);
+                        world.setBlockState(pos, this.torch);
+                    }
+                }
+            }
+            this.finalizer.run(this);
+        }
+
         private void destroy(World world) {
             for (int x = 0; x < 16; x++) {
                 BlockPos pos = new BlockPos(this.sx + x, this.sy - this.y, this.sz + this.z);
                 IBlockState state = world.getBlockState(pos);
                 Block block = state.getBlock();
-                world.setBlockState(pos, air);
+                world.setBlockState(pos, this.air);
                 block.dropBlockAsItem(world, pos, state, FORTUNE_LEVEL);
             }
             if (this.z < 16) {
@@ -75,7 +106,13 @@ public class ChunkDestroyer extends ItemBase {
                 this.y++;
             }
             if (this.y == this.sy) {
-                finalizer.run(this);
+                if (this.isSlimeChunk) {
+                    this.delegate = (w) -> {
+                        construct(w);
+                    };
+                } else {
+                    finalizer.run(this);
+                }
             }
         }
 
