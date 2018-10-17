@@ -2,6 +2,7 @@ package com.snowstep115.ssutils.item;
 
 import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
+import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -106,10 +108,20 @@ public class Yukiho extends ItemPickaxe {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        world.getPlayers(EntityPlayer.class, (p) -> {
-            player.sendStatusMessage(new TextComponentString(p.getName()), false);
-            return true;
-        });
+        if (!world.isRemote) {
+            world.getPlayers(EntityPlayer.class, (p) -> {
+                player.sendStatusMessage(new TextComponentString(p.getName()), false);
+                return true;
+            });
+            ChunkPos pos = new ChunkPos(player.getPosition());
+            Random rnd = new Random(world.getSeed() + (long) (pos.x * pos.x * 0x4c1906) + (long) (pos.x * 0x5ac0db)
+                    + (long) (pos.z * pos.z) * 0x4307a7L + (long) (pos.z * 0x5f24f) ^ 0x3ad8025f);
+            if (rnd.nextInt(10) == 0) {
+                player.sendStatusMessage(new TextComponentString("スライムチャンクです"), false);
+            } else {
+                player.sendStatusMessage(new TextComponentString("スライムチャンクではありません"), false);
+            }
+        }
         ItemStack item = player.getHeldItem(hand);
         return ActionResult.newResult(EnumActionResult.SUCCESS, item);
     }
