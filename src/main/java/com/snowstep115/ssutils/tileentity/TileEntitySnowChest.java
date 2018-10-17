@@ -4,7 +4,6 @@ import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.block.BlockSnowChest;
 import com.snowstep115.ssutils.container.ContainerSnowChest;
-import com.snowstep115.ssutils.network.MessageSnowChestSync;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -37,18 +36,6 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
         fillEmpty();
     }
 
-    public void receiveSyncMessage(NonNullList<ItemStack> items) {
-        boolean empty = true;
-        for (int i = 0; i < this.items.size() && i < items.size(); i++) {
-            ItemStack item = items.get(i);
-            this.items.set(i, item != null ? item : ItemStack.EMPTY);
-            if (!this.items.get(i).isEmpty()) {
-                empty = false;
-            }
-        }
-        this.empty = empty;
-    }
-
     public void spawnAsEntity() {
         ItemStack chest = new ItemStack(ModItems.SNOWCHEST);
         if (!isEmpty()) {
@@ -59,6 +46,31 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
             chest.setTagCompound(compound);
         }
         this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), chest));
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        NBTTagCompound compound = new NBTTagCompound();
+        NBTTagList itemsTag = new NBTTagList();
+        for (ItemStack stack : this.items) {
+            NBTTagCompound nbt = stack.serializeNBT();
+            itemsTag.appendTag(nbt);
+        }
+        compound.setBoolean("empty", this.empty);
+        compound.setTag("items", itemsTag);
+        return compound;
+    }
+
+    @Override
+    public void handleUpdateTag(NBTTagCompound compound) {
+        this.empty = compound.getBoolean("empty");
+        NBTTagList itemsTag = compound.getTagList("items", NBT.TAG_COMPOUND);
+        int count = itemsTag.tagCount();
+        for (int i = 0; i < count; i++) {
+            NBTTagCompound nbt = itemsTag.getCompoundTagAt(i);
+            ItemStack stack = new ItemStack(nbt);
+            this.items.set(i, stack);
+        }
     }
 
     @Override
@@ -145,8 +157,5 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
             }
         }
         this.empty = empty;
-        MessageSnowChestSync msg = new MessageSnowChestSync(this, this.items);
-        TargetPoint tp = new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 128);
-        SnowStepUtils.PACKET_HANDLER.sendToAllAround(msg, tp);
     }
 }

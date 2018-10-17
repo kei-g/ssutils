@@ -104,12 +104,15 @@ public class BlockSnowChest extends Block {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
             EnumFacing facing, float hitX, float hitY, float hitZ) {
-        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS,
-                0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-        TileEntitySnowChest snowChest = (TileEntitySnowChest) world.getTileEntity(pos);
-        player.openContainer = snowChest.createContainer(player.inventory, player);
-        player.openGui(SnowStepUtils.INSTANCE, GuiHandler.OPEN_GUI_SNOWCHEST_ID, world, pos.getX(), pos.getY(),
-                pos.getZ());
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileEntitySnowChest) {
+            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CHEST_OPEN,
+                    SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            TileEntitySnowChest snowChest = (TileEntitySnowChest) tile;
+            player.openContainer = snowChest.createContainer(player.inventory, player);
+            player.openGui(SnowStepUtils.INSTANCE, GuiHandler.OPEN_GUI_SNOWCHEST_ID, world, pos.getX(), pos.getY(),
+                    pos.getZ());
+        }
         return true;
     }
 

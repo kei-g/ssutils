@@ -1,6 +1,5 @@
 package com.snowstep115.ssutils;
 
-import com.snowstep115.ssutils.network.MessageSnowChestSync;
 import com.snowstep115.ssutils.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
@@ -8,14 +7,11 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = SnowStepUtils.MODID, name = SnowStepUtils.NAME, version = SnowStepUtils.VERSION)
-public class SnowStepUtils
-{
+public class SnowStepUtils {
     public static final String MODID = "ssutils";
     public static final String NAME = "SnowStep's Utilities";
     public static final String VERSION = "1.0.0";
@@ -25,8 +21,6 @@ public class SnowStepUtils
 
     public static final CreativeTabs CREATIVE_TAB = new SnowStepUtilsTab();
 
-    public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-    
     @SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
     public static CommonProxy PROXY;
 
@@ -44,7 +38,6 @@ public class SnowStepUtils
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         PROXY.init(event);
-        PACKET_HANDLER.registerMessage(MessageSnowChestSync.Handler.class, MessageSnowChestSync.class, 0, Side.CLIENT);
     }
 
     @Mod.EventHandler
