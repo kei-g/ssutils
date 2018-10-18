@@ -2,7 +2,6 @@ package com.snowstep115.ssutils.tileentity;
 
 import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
-import com.snowstep115.ssutils.block.BlockSnowChest;
 import com.snowstep115.ssutils.container.ContainerSnowChest;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,14 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockableLoot;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.util.Constants.NBT;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class TileEntitySnowChest extends TileEntityLockableLoot {
     private boolean empty;
