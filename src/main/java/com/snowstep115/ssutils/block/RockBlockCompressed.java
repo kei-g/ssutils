@@ -5,8 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.SoundType;
 
 public class RockBlockCompressed extends BlockBase {
-    public RockBlockCompressed() {
-        super(Material.ROCK, 1.5f);
-        setSoundType(SoundType.STONE);
+    public RockBlockCompressed(String name) {
+        super(Material.ROCK, name, 1.5f, SoundType.STONE);
     }
 }

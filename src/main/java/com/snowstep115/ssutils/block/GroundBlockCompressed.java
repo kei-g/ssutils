@@ -5,8 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.SoundType;
 
 public class GroundBlockCompressed extends BlockBase {
-    public GroundBlockCompressed() {
-        super(Material.GROUND, 0.5f);
-        setSoundType(SoundType.GROUND);
+    public GroundBlockCompressed(String name) {
+        super(Material.GROUND, name, 0.5f, SoundType.GROUND);
     }
 }

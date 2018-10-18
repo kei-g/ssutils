@@ -29,18 +29,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 
-public class BlockSnowChest extends Block {
+public class BlockSnowChest extends BlockBase {
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static final String NAME = "snowchest";
 
-    public BlockSnowChest() {
-        super(Material.IRON);
-        setRegistryName(new ResourceLocation(SnowStepUtils.MODID, NAME));
-        setUnlocalizedName(SnowStepUtils.MODID + "." + NAME);
-        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
-        setHardness(3.0f);
+    public BlockSnowChest(String name) {
+        super(Material.IRON, name, 3.0f, SoundType.METAL);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setSoundType(SoundType.METAL);
     }
 
     @Override

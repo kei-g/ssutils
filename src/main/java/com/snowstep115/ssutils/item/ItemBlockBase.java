@@ -16,13 +16,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemBlockBase extends ItemBlock {
     protected ItemBlockBase(BlockBase block, String name) {
         super(block);
-
         setRegistryName(new ResourceLocation(SnowStepUtils.MODID, name));
-        block.setRegistryName(getRegistryName());
-
-        String unlocalizedName = SnowStepUtils.MODID + "." + name;
-        setUnlocalizedName(unlocalizedName);
-        block.setUnlocalizedName(unlocalizedName);
+        setUnlocalizedName(SnowStepUtils.MODID + "." + name);
+        setCreativeTab(SnowStepUtils.CREATIVE_TAB);
     }
 
     public void processBlock(RegistryEvent.Register<Block> event) {

@@ -6,6 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 public class ItemBlockGeneric<T extends BlockBase> extends ItemBlockBase {
     protected ItemBlockGeneric(String name, Class<T> c)
             throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        super(c.newInstance(), name);
+        super(c.getConstructor(String.class).newInstance(name), name);
     }
 }

@@ -26,15 +26,15 @@ public class ModItems {
     public static ItemBlockBase DIORITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase DIRT_COMPRESSED;
     public static ItemBlockBase DIRT_DOUBLE_COMPRESSED;
-    public static final ItemExtractor EXTRACTOR = new ItemExtractor();
+    public static ItemBlockBase EXTRACTOR;
     public static ItemBlockBase GRANITE_COMPRESSED;
     public static ItemBlockBase GRANITE_DOUBLE_COMPRESSED;
     public static final HarukaAxe HARUKA_AXE = new HarukaAxe();
-    public static final ItemInserter INSERTER = new ItemInserter();
+    public static ItemBlockBase INSERTER;
     public static ItemBlockBase NETHERRACK_COMPRESSED;
     public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;
     public static final ItemBase RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
-    public static final ItemSnowChest SNOWCHEST = new ItemSnowChest();
+    public static ItemBlockBase SNOWCHEST;
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
     public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
@@ -50,10 +50,13 @@ public class ModItems {
             DIORITE_DOUBLE_COMPRESSED = new RockDoubleCompressed("diorite");
             DIRT_COMPRESSED = new DirtCompressed();
             DIRT_DOUBLE_COMPRESSED = new DirtDoubleCompressed();
+            EXTRACTOR = new ItemExtractor();
             GRANITE_COMPRESSED = new RockCompressed("granite");
             GRANITE_DOUBLE_COMPRESSED = new RockDoubleCompressed("granite");
+            INSERTER = new ItemInserter();
             NETHERRACK_COMPRESSED = new RockCompressed("netherrack");
             NETHERRACK_DOUBLE_COMPRESSED = new RockDoubleCompressed("netherrack");
+            SNOWCHEST = new ItemSnowChest();
             STONE_COMPRESSED = new RockCompressed("stone");
             STONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("stone");
         } catch (Throwable exception) {
