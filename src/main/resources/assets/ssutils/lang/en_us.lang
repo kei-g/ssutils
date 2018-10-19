@@ -24,3 +24,5 @@ tile.ssutils.stone_compressed.name=Compressed Stone
 tile.ssutils.stone_double_compressed.name=Double Compressed Stone
 
 itemGroup.ssutils=SnowStep's Utilities
+
+tooltip.container.itemstack.remaining=and %d more...
