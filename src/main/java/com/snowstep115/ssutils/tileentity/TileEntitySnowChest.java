@@ -6,6 +6,7 @@ import com.snowstep115.ssutils.container.ContainerSnowChest;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class TileEntitySnowChest extends TileEntityLockableLoot {
@@ -100,7 +102,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
 
     @Override
     public Container createContainer(InventoryPlayer inventoryPlayer, EntityPlayer player) {
-        return new ContainerSnowChest(this, inventoryPlayer, this.pos);
+        return new ContainerSnowChest(this, inventoryPlayer, null);
     }
 
     @Override
@@ -111,6 +113,12 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
     @Override
     protected NonNullList<ItemStack> getItems() {
         return this.items;
+    }
+
+    @Override
+    public void closeInventory(EntityPlayer player) {
+        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.BLOCK_CHEST_CLOSE,
+                SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
     }
 
     @Override

@@ -3,23 +3,19 @@ package com.snowstep115.ssutils.container;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ContainerSnowChest extends Container {
+    private int blocked = -1;
     private boolean closed = true;
-    private final BlockPos pos;
 
-    public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer, BlockPos pos) {
-        this.pos = pos;
-
+    public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer, EnumHand hand) {
         // SnowChest
         int yOffset = 8;
         for (int y = 0; y < 10; y++, yOffset += 18) {
@@ -32,7 +28,16 @@ public class ContainerSnowChest extends Container {
         yOffset = 196;
         for (int y = 0; y < 3; y++, yOffset += 18) {
             for (int x = 0; x < 3; x++) {
-                addSlotToContainer(new Slot(inventoryPlayer, x + y * 3, 12 + x * 18, yOffset));
+                Slot slot = new Slot(inventoryPlayer, x + y * 3, 12 + x * 18, yOffset) {
+                    @Override
+                    public boolean canTakeStack(EntityPlayer player) {
+                        return slotNumber != blocked;
+                    }
+                };
+                addSlotToContainer(slot);
+                if (hand == EnumHand.MAIN_HAND && x + y * 3 == inventoryPlayer.currentItem) {
+                    this.blocked = slot.slotNumber;
+                }
             }
         }
 
@@ -59,9 +64,8 @@ public class ContainerSnowChest extends Container {
         if (this.closed) {
             this.closed = false;
         } else {
-            World world = player.world;
-            world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), SoundEvents.BLOCK_CHEST_CLOSE,
-                    SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            IInventory snowChestInventory = getSlot(0).inventory;
+            snowChestInventory.closeInventory(player);
         }
     }
 
