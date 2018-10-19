@@ -1,18 +1,16 @@
 package com.snowstep115.ssutils.tileentity;
 
 import java.util.HashMap;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 
 public class TileEntityExtractor extends TileEntityBase implements ITickable {
-    private final HashMap<BlockPos, TileEntityInserter> downstream = new HashMap();
-    private final HashMap<BlockPos, IInventory> upstream = new HashMap();
+    private final HashMap<BlockPos, TileEntityInserter> downstream = new HashMap<BlockPos, TileEntityInserter>();
+    private final HashMap<BlockPos, IInventory> upstream = new HashMap<BlockPos, IInventory>();
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
