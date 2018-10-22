@@ -9,6 +9,7 @@ import com.snowstep115.ssutils.item.ItemBlockBase;
 import com.snowstep115.ssutils.item.ItemExtractor;
 import com.snowstep115.ssutils.item.ItemInserter;
 import com.snowstep115.ssutils.item.ItemSnowChest;
+import com.snowstep115.ssutils.item.ItemSnowTeleporter;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
 import com.snowstep115.ssutils.item.RockCompressed;
 import com.snowstep115.ssutils.item.RockDoubleCompressed;
@@ -35,6 +36,7 @@ public class ModItems {
     public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;
     public static final ItemBase RED_FLOWER_COMPRESSED = new RedFlowerCompressed();
     public static ItemBlockBase SNOWCHEST;
+    public static ItemBlockBase SNOW_TELEPORTER;
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
     public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
@@ -56,6 +58,7 @@ public class ModItems {
             INSERTER = new ItemInserter();
             NETHERRACK_COMPRESSED = new RockCompressed("netherrack");
             NETHERRACK_DOUBLE_COMPRESSED = new RockDoubleCompressed("netherrack");
+            SNOW_TELEPORTER = new ItemSnowTeleporter();
             SNOWCHEST = new ItemSnowChest();
             STONE_COMPRESSED = new RockCompressed("stone");
             STONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("stone");

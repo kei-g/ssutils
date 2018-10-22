@@ -60,6 +60,7 @@ public class CommonProxy {
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
         ModItems.EXTRACTOR.processBlock(event);
         ModItems.INSERTER.processBlock(event);
+        ModItems.SNOW_TELEPORTER.processBlock(event);
         ModItems.SNOWCHEST.processBlock(event);
     }
 
@@ -84,6 +85,7 @@ public class CommonProxy {
         ModItems.HARUKA_AXE.process(event);
         ModItems.INSERTER.process(event);
         ModItems.RED_FLOWER_COMPRESSED.process(event);
+        ModItems.SNOW_TELEPORTER.process(event);
         ModItems.SNOWCHEST.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
