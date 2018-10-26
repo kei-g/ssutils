@@ -1,3 +1,5 @@
+container.trashcan=Trash Can
+
 item.ssutils.chunkdestroyer.name=Chunk Destroyer
 item.ssutils.haruka_axe.name=HARUKA AMAMI's Axe
 item.ssutils.red_flower_compressed.name=Compressed Poppy
@@ -22,6 +24,7 @@ tile.ssutils.netherrack_double_compressed.name=Double Compressed Netherrack
 tile.ssutils.snowchest.name=Snow Chest
 tile.ssutils.stone_compressed.name=Compressed Stone
 tile.ssutils.stone_double_compressed.name=Double Compressed Stone
+tile.ssutils.trashcan.name=Trash Can
 
 itemGroup.ssutils=SnowStep's Utilities
 

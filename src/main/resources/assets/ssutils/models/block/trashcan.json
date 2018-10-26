@@ -1,0 +1,47 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "bottom": "ssutils:blocks/trashcan_bottom",
+        "side": "ssutils:blocks/trashcan",
+        "top": "ssutils:blocks/trashcan_top",
+        "particle": "ssutils:blocks/trashcan"
+    },
+    "elements": [
+        {
+            "from": [ 2, 0, 2 ],
+            "to": [ 13, 10, 13 ],
+            "faces": {
+                "down": { "texture": "#bottom" },
+                "up": { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [ 1, 10, 1 ],
+            "to": [ 14, 13, 14 ],
+            "faces": {
+                "down": { "texture": "#bottom" },
+                "up": { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        },
+        {
+            "from": [ 5, 13, 5 ],
+            "to": [ 10, 14, 10 ],
+            "faces": {
+                "down": { "texture": "#bottom" },
+                "up": { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west": { "texture": "#side" },
+                "east": { "texture": "#side" }
+            }
+        }
+    ]
+}

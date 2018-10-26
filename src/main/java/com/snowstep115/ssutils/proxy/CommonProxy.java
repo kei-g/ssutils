@@ -6,6 +6,7 @@ import com.snowstep115.ssutils.network.GuiHandler;
 import com.snowstep115.ssutils.tileentity.TileEntityExtractor;
 import com.snowstep115.ssutils.tileentity.TileEntityInserter;
 import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
+import com.snowstep115.ssutils.tileentity.TileEntityTrashCan;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -29,6 +30,7 @@ public class CommonProxy {
         TileEntity.register(ModItems.EXTRACTOR.getRegistryName().toString(), TileEntityExtractor.class);
         TileEntity.register(ModItems.INSERTER.getRegistryName().toString(), TileEntityInserter.class);
         TileEntity.register(ModItems.SNOWCHEST.getRegistryName().toString(), TileEntitySnowChest.class);
+        TileEntity.register(ModItems.TRASHCAN.getRegistryName().toString(), TileEntityTrashCan.class);
     }
 
     public void init(FMLInitializationEvent event) {
@@ -62,6 +64,7 @@ public class CommonProxy {
         ModItems.INSERTER.processBlock(event);
         ModItems.SNOW_TELEPORTER.processBlock(event);
         ModItems.SNOWCHEST.processBlock(event);
+        ModItems.TRASHCAN.processBlock(event);
     }
 
     @SubscribeEvent
@@ -87,6 +90,7 @@ public class CommonProxy {
         ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.SNOW_TELEPORTER.process(event);
         ModItems.SNOWCHEST.process(event);
+        ModItems.TRASHCAN.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
     }

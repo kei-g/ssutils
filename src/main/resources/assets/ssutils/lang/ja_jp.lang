@@ -1,3 +1,5 @@
+container.trashcan=ゴミ箱
+
 item.ssutils.chunkdestroyer.name=チャンク破壊器
 item.ssutils.haruka_axe.name=天海春香の斧
 item.ssutils.red_flower_compressed.name=圧縮ポピー
@@ -22,6 +24,7 @@ tile.ssutils.netherrack_double_compressed.name=二重圧縮ネザーラック
 tile.ssutils.snowchest.name=スノーチェスト
 tile.ssutils.stone_compressed.name=圧縮石
 tile.ssutils.stone_double_compressed.name=二重圧縮石
+tile.ssutils.trashcan.name=ゴミ箱
 
 itemGroup.ssutils=SnowStep's Utilities
 

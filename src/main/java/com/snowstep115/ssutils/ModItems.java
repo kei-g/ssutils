@@ -10,6 +10,7 @@ import com.snowstep115.ssutils.item.ItemExtractor;
 import com.snowstep115.ssutils.item.ItemInserter;
 import com.snowstep115.ssutils.item.ItemSnowChest;
 import com.snowstep115.ssutils.item.ItemSnowTeleporter;
+import com.snowstep115.ssutils.item.ItemTrashCan;
 import com.snowstep115.ssutils.item.RedFlowerCompressed;
 import com.snowstep115.ssutils.item.RockCompressed;
 import com.snowstep115.ssutils.item.RockDoubleCompressed;
@@ -39,6 +40,7 @@ public class ModItems {
     public static ItemBlockBase SNOW_TELEPORTER;
     public static ItemBlockBase STONE_COMPRESSED;
     public static ItemBlockBase STONE_DOUBLE_COMPRESSED;
+    public static final ItemBlockBase TRASHCAN = new ItemTrashCan();
     public static final ItemBase WHEAT_SEEDS_COMPRESSED = new WheatSeedsCompressed();
     public static final Yukiho YUKIHO = new Yukiho();
 

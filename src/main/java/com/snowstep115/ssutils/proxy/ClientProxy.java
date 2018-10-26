@@ -51,6 +51,7 @@ public class ClientProxy extends CommonProxy {
         ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.SNOW_TELEPORTER.process(event);
         ModItems.SNOWCHEST.process(event);
+        ModItems.TRASHCAN.process(event);
         ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
         ModItems.YUKIHO.process(event);
     }
