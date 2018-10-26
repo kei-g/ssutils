@@ -1,6 +1,6 @@
 package com.snowstep115.ssutils.network;
 
-import com.snowstep115.ssutils.client.gui.GuiContainerSnowChest;
+import com.snowstep115.ssutils.client.gui.GuiSnowChest;
 import com.snowstep115.ssutils.client.gui.GuiTrashCan;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -25,7 +25,7 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int handId, int unused1, int unused2) {
         switch (id) {
         case OPEN_GUI_SNOWCHEST_ID:
-            return new GuiContainerSnowChest(player.openContainer);
+            return new GuiSnowChest(player.openContainer);
         case OPEN_GUI_TRASHCAN_ID:
             return new GuiTrashCan(player.openContainer);
         }

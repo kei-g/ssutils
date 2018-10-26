@@ -5,10 +5,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.Container;
 
-public class GuiContainerSnowChest extends GuiContainer {
+public class GuiSnowChest extends GuiContainer {
     private static final GuiTextureResource TEXTURE = new GuiTextureResource("snowchest", 256, 256);
 
-    public GuiContainerSnowChest(Container container) {
+    public GuiSnowChest(Container container) {
         super(container);
         xSize = 256;
         ySize = 256;
