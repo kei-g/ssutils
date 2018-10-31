@@ -1,5 +1,8 @@
 package com.snowstep115.ssutils;
 
+import com.snowstep115.ssutils.command.CommandGetNBT;
+import com.snowstep115.ssutils.command.CommandSetNBT;
+import com.snowstep115.ssutils.command.CommandUnsetNBT;
 import com.snowstep115.ssutils.proxy.CommonProxy;
 import com.snowstep115.ssutils.world.SnowWorldProvider;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +13,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
@@ -51,5 +55,12 @@ public class SnowStepUtils {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         PROXY.postInit(event);
+    }
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandGetNBT());
+        event.registerServerCommand(new CommandSetNBT());
+        event.registerServerCommand(new CommandUnsetNBT());
     }
 }
