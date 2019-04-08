@@ -1,7 +1,12 @@
 package com.snowstep115.ssutils.inventory;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -61,6 +66,44 @@ public class InventorySnowChest implements IInventory {
 
     @Override
     public void closeInventory(EntityPlayer player) {
+        if (!snowchest.hasTagCompound()) {
+            return;
+        }
+        NBTTagCompound compound = snowchest.getTagCompound();
+        if (!compound.hasKey(KEY_ITEMS, NBT.TAG_LIST)) {
+            return;
+        }
+        NBTTagList itemsTag = compound.getTagList(KEY_ITEMS, NBT.TAG_COMPOUND);
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        for (int i = 0; i < this.stacks.length && i < itemsTag.tagCount(); i++) {
+            NBTTagCompound nbt = itemsTag.getCompoundTagAt(i);
+            ItemStack stack = new ItemStack(nbt);
+            items.add(i, stack);
+        }
+        Collections.sort(items, new Comparator<ItemStack>() {
+            @Override
+            public int compare(ItemStack s1, ItemStack s2) {
+                Item i1 = s1.getItem();
+                Item i2 = s2.getItem();
+                if (i1 == Items.AIR) {
+                    return i2 == Items.AIR ? 0 : 1;
+                }
+                if (i2 == Items.AIR) {
+                    return -1;
+                }
+                int id1 = Item.getIdFromItem(i1);
+                int id2 = Item.getIdFromItem(i2);
+                int c = id1 - id2;
+                return c == 0 ? s1.getMetadata() - s2.getMetadata() : c;
+            }
+        });
+        compound.removeTag(KEY_ITEMS);
+        itemsTag = new NBTTagList();
+        compound.setTag(KEY_ITEMS, itemsTag);
+        for (ItemStack stack : items) {
+            NBTTagCompound nbt = stack.serializeNBT();
+            itemsTag.appendTag(nbt);
+        }
     }
 
     @Override
