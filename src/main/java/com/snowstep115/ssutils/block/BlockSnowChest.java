@@ -1,10 +1,9 @@
 package com.snowstep115.ssutils.block;
 
+import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
-import com.snowstep115.ssutils.container.ContainerSnowChest;
 import com.snowstep115.ssutils.network.GuiHandler;
 import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,13 +14,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -112,7 +108,11 @@ public class BlockSnowChest extends BlockBase {
             ItemStack stack) {
         if (tile instanceof TileEntitySnowChest) {
             TileEntitySnowChest snowchest = (TileEntitySnowChest) tile;
-            snowchest.spawnAsEntity();
+            if (stack.getItem() == ModItems.YUKIHO) {
+                snowchest.dropAll();
+            } else {
+                snowchest.spawnAsEntity();
+            }
             world.removeTileEntity(pos);
         } else {
             super.harvestBlock(world, player, pos, state, tile, stack);

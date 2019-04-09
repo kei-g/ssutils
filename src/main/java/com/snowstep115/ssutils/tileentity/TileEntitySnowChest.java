@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -30,6 +29,20 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
 
     public TileEntitySnowChest() {
         fillEmpty();
+    }
+
+    public void dropAll() {
+        ItemStack chest = new ItemStack(ModItems.SNOWCHEST);
+        if (!isEmpty()) {
+            NBTTagCompound compound = serializeNBT();
+            NBTTagList itemsTag = compound.getTagList("items", NBT.TAG_COMPOUND);
+            for (int i = 0; i < itemsTag.tagCount(); i++) {
+                NBTTagCompound nbt = itemsTag.getCompoundTagAt(i);
+                ItemStack stack = new ItemStack(nbt);
+                this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), stack));
+            }
+        }
+        this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), chest));
     }
 
     public void spawnAsEntity() {
