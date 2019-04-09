@@ -1,5 +1,6 @@
 container.trashcan=ゴミ箱
 
+item.ssutils.banknull.name=/bank/null
 item.ssutils.chunkdestroyer.name=チャンク破壊器
 item.ssutils.haruka_axe.name=天海春香の斧
 item.ssutils.red_flower_compressed.name=圧縮ポピー
@@ -9,6 +10,7 @@ item.ssutils.yukiho.name=萩原雪歩
 
 tile.ssutils.andesite_compressed.name=圧縮安山岩
 tile.ssutils.andesite_double_compressed.name=二重圧縮安山岩
+tile.ssutils.banknull.name=/bank/null
 tile.ssutils.cobblestone_compressed.name=圧縮丸石
 tile.ssutils.cobblestone_double_compressed.name=二重圧縮丸石
 tile.ssutils.diorite_compressed.name=圧縮閃緑岩

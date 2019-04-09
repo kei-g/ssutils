@@ -1,5 +1,6 @@
 container.trashcan=Trash Can
 
+item.ssutils.banknull.name=/bank/null
 item.ssutils.chunkdestroyer.name=Chunk Destroyer
 item.ssutils.haruka_axe.name=HARUKA AMAMI's Axe
 item.ssutils.red_flower_compressed.name=Compressed Poppy
@@ -9,6 +10,7 @@ item.ssutils.yukiho.name=YUKIHO HAGIWARA
 
 tile.ssutils.andesite_compressed.name=Compressed Andesite
 tile.ssutils.andesite_double_compressed.name=Double Compressed Andesite
+tile.ssutils.banknull.name=/bank/null
 tile.ssutils.cobblestone_compressed.name=Compressed Cobblestone
 tile.ssutils.cobblestone_double_compressed.name=Double Compressed Cobblestone
 tile.ssutils.diorite_compressed.name=Compressed Diorite

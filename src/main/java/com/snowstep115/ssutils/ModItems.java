@@ -4,6 +4,7 @@ import com.snowstep115.ssutils.item.ChunkDestroyer;
 import com.snowstep115.ssutils.item.DirtCompressed;
 import com.snowstep115.ssutils.item.DirtDoubleCompressed;
 import com.snowstep115.ssutils.item.HarukaAxe;
+import com.snowstep115.ssutils.item.ItemBankNull;
 import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
 import com.snowstep115.ssutils.item.ItemExtractor;
@@ -21,6 +22,7 @@ import net.minecraft.item.Item;
 public class ModItems {
     public static ItemBlockBase ANDESITE_COMPRESSED;
     public static ItemBlockBase ANDESITE_DOUBLE_COMPRESSED;
+    public static ItemBlockBase BANK_NULL = new ItemBankNull();
     public static final ItemBase CHUNK_DESTROYER = new ChunkDestroyer();
     public static ItemBlockBase COBBLESTONE_COMPRESSED;
     public static ItemBlockBase COBBLESTONE_DOUBLE_COMPRESSED;
