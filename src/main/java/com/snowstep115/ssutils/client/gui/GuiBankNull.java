@@ -1,8 +1,7 @@
 package com.snowstep115.ssutils.client.gui;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import com.snowstep115.ssutils.container.ContainerBankNull;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -21,6 +20,15 @@ public class GuiBankNull extends GuiContainer {
         this.ySize = 256;
     }
 
+    private void drawButtonsAndLabels(int mouseX, int mouseY, float partialTicks) {
+        for (int i = 0; i < this.buttonList.size(); i++) {
+            ((GuiButton) this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY, partialTicks);
+        }
+        for (int j = 0; j < this.labelList.size(); j++) {
+            ((GuiLabel) this.labelList.get(j)).drawLabel(this.mc, mouseX, mouseY);
+        }
+    }
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
@@ -29,12 +37,7 @@ public class GuiBankNull extends GuiContainer {
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
-        for (int i = 0; i < this.buttonList.size(); i++) {
-            ((GuiButton) this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY, partialTicks);
-        }
-        for (int j = 0; j < this.labelList.size(); j++) {
-            ((GuiLabel) this.labelList.get(j)).drawLabel(this.mc, mouseX, mouseY);
-        }
+        this.drawButtonsAndLabels(mouseX, mouseY, partialTicks);
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) this.guiLeft, (float) this.guiTop, 0.0F);
@@ -43,7 +46,7 @@ public class GuiBankNull extends GuiContainer {
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         if (this.inventorySlots instanceof ContainerBankNull) {
-            Collection<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
+            ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
             int y = 2, x = 2;
             for (ItemStack stack : stacks) {
                 this.itemRender.renderItemAndEffectIntoGUI(this.mc.player, stack, x, y);
@@ -72,7 +75,6 @@ public class GuiBankNull extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        //this.fontRenderer.drawString(I18n.format("container.inventory"), 12, 80, 0x404040);
     }
 
     @Override

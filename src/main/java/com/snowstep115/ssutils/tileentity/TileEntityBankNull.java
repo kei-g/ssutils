@@ -1,13 +1,13 @@
 package com.snowstep115.ssutils.tileentity;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-
 import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.container.ContainerBankNull;
 import com.snowstep115.ssutils.util.GrowableItemStackList;
 import com.snowstep115.ssutils.util.ItemKey;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -68,7 +68,8 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
         return true;
     }
 
-    public Collection<ItemStack> collect() {
+    public ArrayList<ItemStack> collect() {
+        HashMap<ItemKey, Integer> order = new HashMap<ItemKey, Integer>();
         HashMap<ItemKey, ItemStack> stacks = new HashMap<ItemKey, ItemStack>();
         for (int i = 0; i < this.stacks.size(); i++) {
             ItemStack stack = this.stacks.get(i);
@@ -80,9 +81,18 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
                 stacks.get(item).grow(stack.getCount());
             } else {
                 stacks.put(item, stack.copy());
+                order.put(item, order.size());
             }
         }
-        return stacks.values();
+        ArrayList<ItemStack> collection = new ArrayList<ItemStack>(stacks.values());
+        Collections.sort(collection, new Comparator<ItemStack>() {
+            public int compare(ItemStack stack1, ItemStack stack2) {
+                ItemKey key1 = new ItemKey(stack1);
+                ItemKey key2 = new ItemKey(stack2);
+                return order.get(key1) - order.get(key2);
+            }
+        });
+        return collection;
     }
 
     public void dropAll() {

@@ -1,6 +1,6 @@
 package com.snowstep115.ssutils.container;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import com.snowstep115.ssutils.tileentity.TileEntityBankNull;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ public class ContainerBankNull extends Container {
         }
     }
 
-    public Collection<ItemStack> collect() {
+    public ArrayList<ItemStack> collect() {
         return this.bankNull.collect();
     }
 
