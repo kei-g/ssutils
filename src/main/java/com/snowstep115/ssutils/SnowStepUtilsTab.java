@@ -1,6 +1,5 @@
 package com.snowstep115.ssutils;
 
-import com.snowstep115.ssutils.item.Yukiho;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 

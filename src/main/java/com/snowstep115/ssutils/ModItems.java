@@ -17,7 +17,6 @@ import com.snowstep115.ssutils.item.RockCompressed;
 import com.snowstep115.ssutils.item.RockDoubleCompressed;
 import com.snowstep115.ssutils.item.WheatSeedsCompressed;
 import com.snowstep115.ssutils.item.Yukiho;
-import net.minecraft.item.Item;
 
 public class ModItems {
     public static ItemBlockBase ANDESITE_COMPRESSED;

@@ -3,7 +3,6 @@ package com.snowstep115.ssutils.tileentity;
 import java.util.HashMap;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
-
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

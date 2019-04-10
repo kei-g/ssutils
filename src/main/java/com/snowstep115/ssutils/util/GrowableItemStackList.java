@@ -7,7 +7,7 @@ import net.minecraft.util.NonNullList;
 public class GrowableItemStackList extends NonNullList<ItemStack> {
     private final ArrayList<ItemStack> list;
 
-    private GrowableItemStackList(ArrayList list) {
+    private GrowableItemStackList(ArrayList<ItemStack> list) {
         super(list, ItemStack.EMPTY);
         this.list = list;
     }

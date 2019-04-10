@@ -4,13 +4,10 @@ import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.container.ContainerTrashCan;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
 
 public class TileEntityTrashCan extends TileEntityLockableLoot {
     private final NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);

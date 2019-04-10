@@ -1,6 +1,5 @@
 package com.snowstep115.ssutils.block;
 
-import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.tileentity.TileEntityExtractor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
