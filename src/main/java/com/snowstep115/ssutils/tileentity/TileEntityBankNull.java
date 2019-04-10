@@ -2,9 +2,13 @@ package com.snowstep115.ssutils.tileentity;
 
 import java.util.Collection;
 import java.util.HashMap;
+
+import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.container.ContainerBankNull;
 import com.snowstep115.ssutils.util.GrowableItemStackList;
 import com.snowstep115.ssutils.util.ItemKey;
+
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -79,6 +83,28 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
             }
         }
         return stacks.values();
+    }
+
+    public void dropAll() {
+        double x = this.pos.getX();
+        double y = this.pos.getY();
+        double z = this.pos.getZ();
+        for (int i = 0; i < this.stacks.size(); i++) {
+            ItemStack stack = this.stacks.get(i);
+            if (stack.isEmpty()) {
+                continue;
+            }
+            this.world.spawnEntity(new EntityItem(this.world, x, y, z, stack));
+        }
+        this.world.spawnEntity(new EntityItem(this.world, x, y, z, new ItemStack(ModItems.BANK_NULL)));
+    }
+
+    public void spawnAsEntity() {
+        ItemStack bankNull = new ItemStack(ModItems.BANK_NULL);
+        NBTTagCompound compound = new NBTTagCompound();
+        bankNull.setTagCompound(compound);
+        writeToNBT(compound);
+        this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), bankNull));
     }
 
     private void writeItemsTo(NBTTagCompound compound) {
