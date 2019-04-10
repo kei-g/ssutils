@@ -29,6 +29,34 @@ public class GuiBankNull extends GuiContainer {
         }
     }
 
+    private static String getAltText(ItemStack stack) {
+        int cnt = stack.getCount();
+        if (cnt <= 1) {
+            return "";
+        } else if (cnt < 1000) {
+            return String.format("%d", cnt);
+        } else if (cnt < 1000000) {
+            return String.format("%dK", cnt / 1000);
+        } else if (cnt < 1000000000) {
+            return String.format("%dM", cnt / 1000000);
+        } else {
+            return String.format("%dG", cnt / 1000000000);
+        }
+    }
+
+    private void drawItemStack(ItemStack stack, int x, int y) {
+        GlStateManager.translate(0.0F, 0.0F, 32.0F);
+        this.zLevel = 200.0F;
+        this.itemRender.zLevel = 200.0F;
+        net.minecraft.client.gui.FontRenderer font = stack.getItem().getFontRenderer(stack);
+        if (font == null)
+            font = fontRenderer;
+        this.itemRender.renderItemAndEffectIntoGUI(stack, x, y);
+        this.itemRender.renderItemOverlayIntoGUI(font, stack, x, y, getAltText(stack));
+        this.zLevel = 0.0F;
+        this.itemRender.zLevel = 0.0F;
+    }
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
@@ -49,11 +77,7 @@ public class GuiBankNull extends GuiContainer {
             ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
             int y = 2, x = 2;
             for (ItemStack stack : stacks) {
-                this.itemRender.renderItemAndEffectIntoGUI(this.mc.player, stack, x, y);
-                if (stack.getCount() > 1) {
-                    String msg = String.format("%d", stack.getCount());
-                    this.itemRender.renderItemOverlayIntoGUI(this.fontRenderer, stack, x, y, msg);
-                }
+                this.drawItemStack(stack, x, y);
                 x += 18;
                 if (this.xSize < x + 18) {
                     x = 2;
@@ -61,7 +85,6 @@ public class GuiBankNull extends GuiContainer {
                 }
             }
         }
-        this.renderHoveredToolTip(mouseX, mouseY);
         RenderHelper.disableStandardItemLighting();
         this.drawGuiContainerForegroundLayer(mouseX, mouseY);
         RenderHelper.enableGUIStandardItemLighting();
@@ -71,6 +94,7 @@ public class GuiBankNull extends GuiContainer {
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
         RenderHelper.enableStandardItemLighting();
+        this.renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override

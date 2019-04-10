@@ -16,7 +16,12 @@ public class ContainerBankNull extends Container {
     public ContainerBankNull(TileEntityBankNull bankNull, InventoryPlayer inventoryPlayer, EnumHand hand) {
         this.bankNull = bankNull;
         for (int i = 0; i < 14 * 14; i++) {
-            addSlotToContainer(new Slot(bankNull, i, 2 + (i % 14) * 18, 2 + (i / 14) * 18));
+            addSlotToContainer(new Slot(bankNull, i, 2 + (i % 14) * 18, 2 + (i / 14) * 18) {
+                @Override
+                public boolean canTakeStack(EntityPlayer player) {
+                    return false;
+                }
+            });
         }
     }
 
