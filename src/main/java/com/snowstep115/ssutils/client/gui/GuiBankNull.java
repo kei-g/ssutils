@@ -2,6 +2,8 @@ package com.snowstep115.ssutils.client.gui;
 
 import java.util.ArrayList;
 import com.snowstep115.ssutils.container.ContainerBankNull;
+
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -85,6 +87,19 @@ public class GuiBankNull extends GuiContainer {
                 }
             }
         }
+        if (this.guiLeft < mouseX && mouseX < this.guiLeft + this.xSize && this.guiTop < mouseY
+                && mouseY < this.guiTop + this.ySize && this.inventorySlots instanceof ContainerBankNull) {
+            ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
+            int index = ((mouseX - this.guiLeft - 2) / 18) + ((mouseY - this.guiTop - 2) / 18) * 14;
+            if (index < stacks.size()) {
+                ItemStack stack = stacks.get(index);
+                FontRenderer font = stack.getItem().getFontRenderer(stack);
+                net.minecraftforge.fml.client.config.GuiUtils.preItemToolTip(stack);
+                this.drawHoveringText(this.getItemToolTip(stack), mouseX - this.guiLeft, mouseY - this.guiTop,
+                        (font == null ? fontRenderer : font));
+                net.minecraftforge.fml.client.config.GuiUtils.postItemToolTip();
+            }
+        }
         RenderHelper.disableStandardItemLighting();
         this.drawGuiContainerForegroundLayer(mouseX, mouseY);
         RenderHelper.enableGUIStandardItemLighting();
@@ -94,7 +109,6 @@ public class GuiBankNull extends GuiContainer {
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
         RenderHelper.enableStandardItemLighting();
-        this.renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override
