@@ -1,6 +1,13 @@
 package com.snowstep115.ssutils.container;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import invtweaks.api.container.ChestContainer;
+import invtweaks.api.container.ContainerSection;
+import invtweaks.api.container.ContainerSectionCallback;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,12 +22,18 @@ public class ContainerSnowChest extends Container {
     private int blocked = -1;
     private boolean closed = true;
 
+    private final ArrayList<Slot> hotbarSlots = new ArrayList<Slot>();
+    private final ArrayList<Slot> inventorySlots = new ArrayList<Slot>();
+    private final ArrayList<Slot> snowchestSlots = new ArrayList<Slot>();
+
     public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer, EnumHand hand) {
         // SnowChest
         int yOffset = 17;
         for (int y = 0; y < 10; y++, yOffset += 18) {
             for (int x = 0; x < 13; x++) {
-                addSlotToContainer(new Slot(snowChestInventory, x + y * 13, 12 + x * 18, yOffset));
+                Slot slot = new Slot(snowChestInventory, x + y * 13, 12 + x * 18, yOffset);
+                addSlotToContainer(slot);
+                this.snowchestSlots.add(slot);
             }
         }
 
@@ -35,6 +48,7 @@ public class ContainerSnowChest extends Container {
                     }
                 };
                 addSlotToContainer(slot);
+                this.hotbarSlots.add(slot);
                 if (hand == EnumHand.MAIN_HAND && x + y * 3 == inventoryPlayer.currentItem) {
                     this.blocked = slot.slotNumber;
                 }
@@ -45,7 +59,9 @@ public class ContainerSnowChest extends Container {
         yOffset = 199;
         for (int y = 0; y < 3; y++, yOffset += 18) {
             for (int x = 0; x < 9; x++) {
-                addSlotToContainer(new Slot(inventoryPlayer, 9 + x + y * 9, 84 + x * 18, yOffset));
+                Slot slot = new Slot(inventoryPlayer, 9 + x + y * 9, 84 + x * 18, yOffset);
+                addSlotToContainer(slot);
+                this.inventorySlots.add(slot);
             }
         }
     }
@@ -87,5 +103,16 @@ public class ContainerSnowChest extends Container {
             }
         }
         return ItemStack.EMPTY;
+    }
+
+    @ContainerSectionCallback
+    public Map<ContainerSection, List<Slot>> getSlotMap() {
+        HashMap<ContainerSection, List<Slot>> map = new HashMap<ContainerSection, List<Slot>>();
+        map.put(ContainerSection.CHEST, this.snowchestSlots);
+        ArrayList<Slot> inventorySlots = new ArrayList<Slot>();
+        inventorySlots.addAll(this.inventorySlots);
+        inventorySlots.addAll(this.hotbarSlots);
+        map.put(ContainerSection.INVENTORY, inventorySlots);
+        return map;
     }
 }
