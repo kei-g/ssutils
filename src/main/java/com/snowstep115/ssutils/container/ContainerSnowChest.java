@@ -1,5 +1,6 @@
 package com.snowstep115.ssutils.container;
 
+import invtweaks.api.container.ChestContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -9,13 +10,14 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
+@ChestContainer
 public class ContainerSnowChest extends Container {
     private int blocked = -1;
     private boolean closed = true;
 
     public ContainerSnowChest(IInventory snowChestInventory, InventoryPlayer inventoryPlayer, EnumHand hand) {
         // SnowChest
-        int yOffset = 8;
+        int yOffset = 17;
         for (int y = 0; y < 10; y++, yOffset += 18) {
             for (int x = 0; x < 13; x++) {
                 addSlotToContainer(new Slot(snowChestInventory, x + y * 13, 12 + x * 18, yOffset));
@@ -23,7 +25,7 @@ public class ContainerSnowChest extends Container {
         }
 
         // Hotbar
-        yOffset = 196;
+        yOffset = 199;
         for (int y = 0; y < 3; y++, yOffset += 18) {
             for (int x = 0; x < 3; x++) {
                 Slot slot = new Slot(inventoryPlayer, x + y * 3, 12 + x * 18, yOffset) {
@@ -40,7 +42,7 @@ public class ContainerSnowChest extends Container {
         }
 
         // Inventory
-        yOffset = 196;
+        yOffset = 199;
         for (int y = 0; y < 3; y++, yOffset += 18) {
             for (int x = 0; x < 9; x++) {
                 addSlotToContainer(new Slot(inventoryPlayer, 9 + x + y * 9, 84 + x * 18, yOffset));
