@@ -42,6 +42,7 @@ public class ClientProxy extends CommonProxy {
         ModItems.DIRT_DOUBLE_COMPRESSED.process(event);
         ModItems.NETHERRACK_COMPRESSED.process(event);
         ModItems.NETHERRACK_DOUBLE_COMPRESSED.process(event);
+        ModItems.BANK_NULL.process(event);
         ModItems.CHUNK_DESTROYER.process(event);
         ModItems.DISTILLER.process(event);
         ModItems.EXTRACTOR.process(event);
