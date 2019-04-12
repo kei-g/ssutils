@@ -17,6 +17,7 @@ tile.ssutils.diorite_compressed.name=圧縮閃緑岩
 tile.ssutils.diorite_double_compressed.name=二重圧縮閃緑岩
 tile.ssutils.dirt_compressed.name=圧縮土
 tile.ssutils.dirt_double_compressed.name=二重圧縮土
+tile.ssutils.distiller.name=蒸留器
 tile.ssutils.extractor.name=取り出し機
 tile.ssutils.granite_compressed.name=圧縮花崗岩
 tile.ssutils.granite_double_compressed.name=二重圧縮花崗岩

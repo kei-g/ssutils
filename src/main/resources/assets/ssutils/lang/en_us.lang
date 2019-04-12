@@ -17,6 +17,7 @@ tile.ssutils.diorite_compressed.name=Compressed Diorite
 tile.ssutils.diorite_double_compressed.name=Double Compressed Diorite
 tile.ssutils.dirt_compressed.name=Compressed Dirt
 tile.ssutils.dirt_double_compressed.name=Double Compressed Dirt
+tile.ssutils.distiller.name=Distiller
 tile.ssutils.extractor.name=Extractor
 tile.ssutils.granite_compressed.name=Compressed Granite
 tile.ssutils.granite_double_compressed.name=Double Compressed Granite

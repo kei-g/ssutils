@@ -1,0 +1,21 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "above": "ssutils:blocks/distiller_above",
+        "below": "ssutils:blocks/distiller_below",
+        "side": "ssutils:blocks/distiller_side"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "texture": "#below" },
+                "up":    { "texture": "#above" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#side" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

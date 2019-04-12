@@ -7,6 +7,7 @@ import com.snowstep115.ssutils.item.HarukaAxe;
 import com.snowstep115.ssutils.item.ItemBankNull;
 import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
+import com.snowstep115.ssutils.item.ItemDistiller;
 import com.snowstep115.ssutils.item.ItemExtractor;
 import com.snowstep115.ssutils.item.ItemInserter;
 import com.snowstep115.ssutils.item.ItemSnowChest;
@@ -29,6 +30,7 @@ public class ModItems {
     public static ItemBlockBase DIORITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase DIRT_COMPRESSED;
     public static ItemBlockBase DIRT_DOUBLE_COMPRESSED;
+    public static final ItemBlockBase DISTILLER = new ItemDistiller();
     public static ItemBlockBase EXTRACTOR;
     public static ItemBlockBase GRANITE_COMPRESSED;
     public static ItemBlockBase GRANITE_DOUBLE_COMPRESSED;
