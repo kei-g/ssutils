@@ -9,6 +9,7 @@ import com.snowstep115.ssutils.item.ItemBase;
 import com.snowstep115.ssutils.item.ItemBlockBase;
 import com.snowstep115.ssutils.item.ItemDistiller;
 import com.snowstep115.ssutils.item.ItemExtractor;
+import com.snowstep115.ssutils.item.ItemHeatExchanger;
 import com.snowstep115.ssutils.item.ItemInserter;
 import com.snowstep115.ssutils.item.ItemSnowChest;
 import com.snowstep115.ssutils.item.ItemSnowTeleporter;
@@ -35,6 +36,7 @@ public class ModItems {
     public static ItemBlockBase GRANITE_COMPRESSED;
     public static ItemBlockBase GRANITE_DOUBLE_COMPRESSED;
     public static final HarukaAxe HARUKA_AXE = new HarukaAxe();
+    public static final ItemBlockBase HEAT_EXCHANGER = new ItemHeatExchanger();
     public static ItemBlockBase INSERTER;
     public static ItemBlockBase NETHERRACK_COMPRESSED;
     public static ItemBlockBase NETHERRACK_DOUBLE_COMPRESSED;

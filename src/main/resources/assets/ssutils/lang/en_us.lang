@@ -21,6 +21,7 @@ tile.ssutils.distiller.name=Distiller
 tile.ssutils.extractor.name=Extractor
 tile.ssutils.granite_compressed.name=Compressed Granite
 tile.ssutils.granite_double_compressed.name=Double Compressed Granite
+tile.ssutils.heat_exchanger.name=Heat Exchanger
 tile.ssutils.inserter.name=Inserter
 tile.ssutils.netherrack_compressed.name=Compressed Netherrack
 tile.ssutils.netherrack_double_compressed.name=Double Compressed Netherrack

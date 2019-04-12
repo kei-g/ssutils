@@ -6,6 +6,7 @@ import com.snowstep115.ssutils.network.GuiHandler;
 import com.snowstep115.ssutils.tileentity.TileEntityBankNull;
 import com.snowstep115.ssutils.tileentity.TileEntityDistiller;
 import com.snowstep115.ssutils.tileentity.TileEntityExtractor;
+import com.snowstep115.ssutils.tileentity.TileEntityHeatExchanger;
 import com.snowstep115.ssutils.tileentity.TileEntityInserter;
 import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import com.snowstep115.ssutils.tileentity.TileEntityTrashCan;
@@ -31,6 +32,7 @@ public class CommonProxy {
         TileEntity.register(ModItems.BANK_NULL.getRegistryName().toString(), TileEntityBankNull.class);
         TileEntity.register(ModItems.DISTILLER.getRegistryName().toString(), TileEntityDistiller.class);
         TileEntity.register(ModItems.EXTRACTOR.getRegistryName().toString(), TileEntityExtractor.class);
+        TileEntity.register(ModItems.HEAT_EXCHANGER.getRegistryName().toString(), TileEntityHeatExchanger.class);
         TileEntity.register(ModItems.INSERTER.getRegistryName().toString(), TileEntityInserter.class);
         TileEntity.register(ModItems.SNOWCHEST.getRegistryName().toString(), TileEntitySnowChest.class);
         TileEntity.register(ModItems.TRASHCAN.getRegistryName().toString(), TileEntityTrashCan.class);
@@ -66,6 +68,7 @@ public class CommonProxy {
         ModItems.BANK_NULL.processBlock(event);
         ModItems.DISTILLER.processBlock(event);
         ModItems.EXTRACTOR.processBlock(event);
+        ModItems.HEAT_EXCHANGER.processBlock(event);
         ModItems.INSERTER.processBlock(event);
         ModItems.SNOW_TELEPORTER.processBlock(event);
         ModItems.SNOWCHEST.processBlock(event);
@@ -93,6 +96,7 @@ public class CommonProxy {
         ModItems.DISTILLER.process(event);
         ModItems.EXTRACTOR.process(event);
         ModItems.HARUKA_AXE.process(event);
+        ModItems.HEAT_EXCHANGER.process(event);
         ModItems.INSERTER.process(event);
         ModItems.RED_FLOWER_COMPRESSED.process(event);
         ModItems.SNOW_TELEPORTER.process(event);
