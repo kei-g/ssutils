@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.world.World;
 
-public class BlockHeatExchanger extends BlockBase {
+public class BlockHeatExchanger extends BlockTankBase {
     public BlockHeatExchanger(String name) {
         super(Material.IRON, name, 1.0F, SoundType.METAL);
     }

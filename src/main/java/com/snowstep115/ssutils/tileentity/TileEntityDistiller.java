@@ -4,10 +4,11 @@ import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
+import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.util.DistillerInfo;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
@@ -16,7 +17,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class TileEntityDistiller extends TileEntity implements ITickable {
+public class TileEntityDistiller extends TileEntityTankBase implements ITickable {
     private static final HashMap<String, DistillerInfo> TABLE = new HashMap<String, DistillerInfo>();
 
     static {
@@ -28,6 +29,14 @@ public class TileEntityDistiller extends TileEntity implements ITickable {
     private final FluidTank aboveTank = new FluidTank(2147483647);
     private final FluidTank belowTank = new FluidTank(2147483647);
     private final FluidTank inputTank = new FluidTank(2147483647);
+
+    @Override
+    public void dropAll() {
+        dropFluidShard(this.aboveTank);
+        dropFluidShard(this.belowTank);
+        dropFluidShard(this.inputTank);
+        spawnEntity(new ItemStack(ModItems.DISTILLER));
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {

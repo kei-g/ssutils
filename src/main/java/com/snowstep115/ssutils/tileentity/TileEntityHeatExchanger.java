@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
+import com.snowstep115.ssutils.ModItems;
+
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -15,7 +18,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileEntityHeatExchanger extends TileEntity implements ITickable {
+public class TileEntityHeatExchanger extends TileEntityTankBase implements ITickable {
     private static final HashMap<String, String> COOL = new HashMap<String, String>();
     private static final HashMap<String, String> HEAT = new HashMap<String, String>();
 
@@ -31,6 +34,13 @@ public class TileEntityHeatExchanger extends TileEntity implements ITickable {
 
     private final FluidTank aboveTank = new FluidTank(2147483647);
     private final FluidTank belowTank = new FluidTank(2147483647);
+
+    @Override
+    public void dropAll() {
+        dropFluidShard(this.aboveTank);
+        dropFluidShard(this.belowTank);
+        spawnEntity(new ItemStack(ModItems.HEAT_EXCHANGER));
+    }
 
     @Override
     public NBTTagCompound getUpdateTag() {

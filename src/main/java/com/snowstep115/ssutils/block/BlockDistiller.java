@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.world.World;
 
-public class BlockDistiller extends BlockBase {
+public class BlockDistiller extends BlockTankBase {
     public BlockDistiller(String name) {
         super(Material.GLASS, name, 1.0F, SoundType.GLASS);
     }
