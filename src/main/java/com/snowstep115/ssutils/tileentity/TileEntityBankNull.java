@@ -49,7 +49,7 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
 
     @Override
     public int getInventoryStackLimit() {
-        return 2147483647;
+        return 64;
     }
 
     @Override
@@ -120,7 +120,8 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
     private void writeItemsTo(NBTTagCompound compound) {
         NBTTagList items = new NBTTagList();
         compound.setTag("items", items);
-        for (ItemStack stack : collect()) {
+        for (int i = 0; i < this.stacks.size(); i++) {
+            ItemStack stack = this.stacks.get(i);
             if (stack.isEmpty()) {
                 continue;
             }
