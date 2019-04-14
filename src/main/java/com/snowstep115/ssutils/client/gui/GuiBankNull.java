@@ -1,6 +1,8 @@
 package com.snowstep115.ssutils.client.gui;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import com.snowstep115.ssutils.container.ContainerBankNull;
 
 import net.minecraft.client.gui.FontRenderer;
@@ -75,27 +77,28 @@ public class GuiBankNull extends GuiContainer {
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        if (this.inventorySlots instanceof ContainerBankNull) {
-            ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
-            int y = 2, x = 2;
-            for (ItemStack stack : stacks) {
-                this.drawItemStack(stack, x, y);
-                x += 18;
-                if (this.xSize < x + 18) {
-                    x = 2;
-                    y += 18;
-                }
+        ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
+        int y = 2, x = 2;
+        for (ItemStack stack : stacks) {
+            this.drawItemStack(stack, x, y);
+            x += 18;
+            if (this.xSize < x + 18) {
+                x = 2;
+                y += 18;
             }
         }
         if (this.guiLeft < mouseX && mouseX < this.guiLeft + this.xSize && this.guiTop < mouseY
                 && mouseY < this.guiTop + this.ySize && this.inventorySlots instanceof ContainerBankNull) {
-            ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
             int index = ((mouseX - this.guiLeft - 2) / 18) + ((mouseY - this.guiTop - 2) / 18) * 14;
             if (index < stacks.size()) {
                 ItemStack stack = stacks.get(index);
                 FontRenderer font = stack.getItem().getFontRenderer(stack);
                 net.minecraftforge.fml.client.config.GuiUtils.preItemToolTip(stack);
-                this.drawHoveringText(this.getItemToolTip(stack), mouseX - this.guiLeft, mouseY - this.guiTop,
+                List<String> tooltip = this.getItemToolTip(stack);
+                if (1000 <= stack.getCount()) {
+                    tooltip.add(String.format("Count: %d", stack.getCount()));
+                }
+                this.drawHoveringText(tooltip, mouseX - this.guiLeft, mouseY - this.guiTop,
                         (font == null ? fontRenderer : font));
                 net.minecraftforge.fml.client.config.GuiUtils.postItemToolTip();
             }
