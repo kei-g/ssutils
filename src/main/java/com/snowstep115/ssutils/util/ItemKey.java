@@ -7,18 +7,21 @@ import net.minecraft.nbt.NBTTagCompound;
 public class ItemKey {
     private final int id;
     private final int damage;
+    private final String name;
     private final NBTTagCompound tag;
 
     public ItemKey(ItemStack stack) {
         Item item = stack.getItem();
         this.id = Item.getIdFromItem(item);
         this.damage = stack.getItemDamage();
+        this.name = item.getRegistryName().toString();
         this.tag = stack.hasTagCompound() ? stack.getTagCompound() : null;
     }
 
     @Override
     public int hashCode() {
-        return this.id + this.damage + (this.tag != null ? this.tag.hashCode() : 0);
+        return (this.damage + 114514) * (this.damage + 551) + this.name.hashCode()
+                + (this.tag != null ? this.tag.hashCode() : 0);
     }
 
     @Override
@@ -27,7 +30,8 @@ public class ItemKey {
     }
 
     public boolean equals(ItemKey otherKey) {
-        return this.id == otherKey.id && this.damage == otherKey.damage && ((this.tag == null && otherKey.tag == null)
-                || (this.tag != null && otherKey.tag != null && this.tag.equals(otherKey.tag)));
+        return this.id == otherKey.id && this.damage == otherKey.damage && this.name.equals(otherKey.name)
+                && ((this.tag == null && otherKey.tag == null)
+                        || (this.tag != null && otherKey.tag != null && this.tag.equals(otherKey.tag)));
     }
 }

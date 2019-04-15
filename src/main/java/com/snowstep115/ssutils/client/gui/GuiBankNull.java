@@ -1,9 +1,6 @@
 package com.snowstep115.ssutils.client.gui;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.snowstep115.ssutils.container.ContainerBankNull;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -14,6 +11,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class GuiBankNull extends GuiContainer {
     private static final GuiTextureResource TEXTURE = new GuiTextureResource("banknull", 256, 256);
@@ -63,6 +61,8 @@ public class GuiBankNull extends GuiContainer {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        final int LEFT = this.guiLeft;
+        final int TOP = this.guiTop;
         this.drawDefaultBackground();
         this.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
         GlStateManager.disableRescaleNormal();
@@ -72,35 +72,40 @@ public class GuiBankNull extends GuiContainer {
         this.drawButtonsAndLabels(mouseX, mouseY, partialTicks);
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float) this.guiLeft, (float) this.guiTop, 0.0F);
+        GlStateManager.translate((float) LEFT, (float) TOP, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        ArrayList<ItemStack> stacks = ((ContainerBankNull) this.inventorySlots).collect();
+        NonNullList<ItemStack> stacks = this.inventorySlots.getInventory();
         int y = 2, x = 2;
         for (ItemStack stack : stacks) {
-            this.drawItemStack(stack, x, y);
+            if (!stack.isEmpty()) {
+                this.drawItemStack(stack, x, y);
+            }
             x += 18;
             if (this.xSize < x + 18) {
                 x = 2;
                 y += 18;
             }
         }
-        if (this.guiLeft < mouseX && mouseX < this.guiLeft + this.xSize && this.guiTop < mouseY
-                && mouseY < this.guiTop + this.ySize && this.inventorySlots instanceof ContainerBankNull) {
-            int index = ((mouseX - this.guiLeft - 2) / 18) + ((mouseY - this.guiTop - 2) / 18) * 14;
+        if (LEFT < mouseX && mouseX < LEFT + this.xSize && TOP < mouseY && mouseY < TOP + this.ySize) {
+            int index = ((mouseX - LEFT - 2) / 18) + ((mouseY - TOP - 2) / 18) * 14;
             if (index < stacks.size()) {
                 ItemStack stack = stacks.get(index);
-                FontRenderer font = stack.getItem().getFontRenderer(stack);
-                net.minecraftforge.fml.client.config.GuiUtils.preItemToolTip(stack);
-                List<String> tooltip = this.getItemToolTip(stack);
-                if (1000 <= stack.getCount()) {
-                    tooltip.add(String.format("Count: %d", stack.getCount()));
+                if (!stack.isEmpty()) {
+                    FontRenderer font = stack.getItem().getFontRenderer(stack);
+                    net.minecraftforge.fml.client.config.GuiUtils.preItemToolTip(stack);
+                    List<String> tooltip = this.getItemToolTip(stack);
+                    if (1000 <= stack.getCount()) {
+                        tooltip.add(String.format("Count: %d", stack.getCount()));
+                    }
+                    if (font == null) {
+                        font = this.fontRenderer;
+                    }
+                    this.drawHoveringText(tooltip, mouseX - LEFT, mouseY - TOP, font);
+                    net.minecraftforge.fml.client.config.GuiUtils.postItemToolTip();
                 }
-                this.drawHoveringText(tooltip, mouseX - this.guiLeft, mouseY - this.guiTop,
-                        (font == null ? fontRenderer : font));
-                net.minecraftforge.fml.client.config.GuiUtils.postItemToolTip();
             }
         }
         RenderHelper.disableStandardItemLighting();

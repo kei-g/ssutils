@@ -1,13 +1,11 @@
 package com.snowstep115.ssutils.tileentity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+
 import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.container.ContainerBankNull;
-import com.snowstep115.ssutils.util.GrowableItemStackList;
 import com.snowstep115.ssutils.util.ItemKey;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,20 +17,15 @@ import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.items.IItemHandler;
 
 public class TileEntityBankNull extends TileEntityLockableLoot {
-    private final ArrayList<ContainerBankNull> containers = new ArrayList<ContainerBankNull>();
-    private final GrowableItemStackList stacks = new GrowableItemStackList(54);
+    private final HashMap<ItemKey, Integer> indices = new HashMap<ItemKey, Integer>();
+    private final NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(14 * 14, ItemStack.EMPTY);
 
     @Override
     public Container createContainer(InventoryPlayer inventoryPlayer, EntityPlayer player) {
-        ContainerBankNull container = new ContainerBankNull(this, inventoryPlayer, EnumHand.MAIN_HAND);
-        this.containers.add(container);
-        return container;
-    }
-
-    public void onContainerClosed(ContainerBankNull container) {
-        this.containers.remove(container);
+        return new ContainerBankNull(this, inventoryPlayer, EnumHand.MAIN_HAND);
     }
 
     @Override
@@ -46,22 +39,18 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
     }
 
     @Override
-    public void closeInventory(EntityPlayer player) {
-    }
-
-    @Override
     public String getName() {
         return "";
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return 64;
+        return 2147483647;
     }
 
     @Override
     public int getSizeInventory() {
-        return this.stacks.size() + 1;
+        return this.stacks.size();
     }
 
     @Override
@@ -73,33 +62,6 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
             }
         }
         return true;
-    }
-
-    public ArrayList<ItemStack> collect() {
-        HashMap<ItemKey, Integer> order = new HashMap<ItemKey, Integer>();
-        HashMap<ItemKey, ItemStack> stacks = new HashMap<ItemKey, ItemStack>();
-        for (int i = 0; i < this.stacks.size(); i++) {
-            ItemStack stack = this.stacks.get(i);
-            if (stack.isEmpty()) {
-                continue;
-            }
-            ItemKey item = new ItemKey(stack);
-            if (stacks.containsKey(item)) {
-                stacks.get(item).grow(stack.getCount());
-            } else {
-                stacks.put(item, stack.copy());
-                order.put(item, order.size());
-            }
-        }
-        ArrayList<ItemStack> collection = new ArrayList<ItemStack>(stacks.values());
-        Collections.sort(collection, new Comparator<ItemStack>() {
-            public int compare(ItemStack stack1, ItemStack stack2) {
-                ItemKey key1 = new ItemKey(stack1);
-                ItemKey key2 = new ItemKey(stack2);
-                return order.get(key1) - order.get(key2);
-            }
-        });
-        return collection;
     }
 
     public void dropAll() {
@@ -124,23 +86,24 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
         this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), bankNull));
     }
 
-    private void writeItemsTo(NBTTagCompound compound) {
-        NBTTagList items = new NBTTagList();
-        compound.setTag("items", items);
+    private void writeContentsTo(NBTTagCompound compound) {
+        NBTTagList itemsTag = new NBTTagList();
+        compound.setTag("items", itemsTag);
         for (int i = 0; i < this.stacks.size(); i++) {
             ItemStack stack = this.stacks.get(i);
             if (stack.isEmpty()) {
                 continue;
             }
             NBTTagCompound tag = stack.serializeNBT();
-            items.appendTag(tag);
+            tag.setInteger("RealCount", stack.getCount());
+            itemsTag.appendTag(tag);
         }
     }
 
     @Override
     public NBTTagCompound getUpdateTag() {
         NBTTagCompound compound = new NBTTagCompound();
-        writeItemsTo(compound);
+        writeContentsTo(compound);
         return compound;
     }
 
@@ -149,11 +112,15 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
         if (!compound.hasKey("items", NBT.TAG_LIST)) {
             return;
         }
+        this.indices.clear();
         this.stacks.clear();
         NBTTagList itemsTag = compound.getTagList("items", NBT.TAG_COMPOUND);
         for (int i = 0; i < itemsTag.tagCount(); i++) {
             NBTTagCompound nbt = itemsTag.getCompoundTagAt(i);
             ItemStack stack = new ItemStack(nbt);
+            stack.setCount(nbt.getInteger("RealCount"));
+            ItemKey key = new ItemKey(stack);
+            this.indices.put(key, i);
             this.stacks.set(i, stack);
         }
     }
@@ -167,23 +134,114 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         NBTTagCompound compound = super.writeToNBT(tag);
-        writeItemsTo(compound);
+        writeContentsTo(compound);
         return compound;
     }
 
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack item) {
-        this.stacks.set(slot, item);
+    class StacksWrapper implements IItemHandler {
+        private final HashMap<ItemKey, Integer> indices;
+        private final Object lock = new Object();
+        private final NonNullList<ItemStack> stacks;
+
+        public StacksWrapper(HashMap<ItemKey, Integer> indices, NonNullList<ItemStack> stacks) {
+            this.indices = indices;
+            this.stacks = stacks;
+        }
+
+        @Override
+        public int getSlots() {
+            return this.stacks.size();
+        }
+
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return this.stacks.get(slot);
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            if (stack.isEmpty()) {
+                return ItemStack.EMPTY;
+            }
+            ItemKey key = new ItemKey(stack);
+            synchronized (this.lock) {
+                if (this.indices.containsKey(key)) {
+                    int index = this.indices.get(key);
+                    ItemStack s = this.stacks.get(index);
+                    long cnt = (long) s.getCount() + stack.getCount();
+                    if (cnt <= 2147483647) {
+                        if (!simulate) {
+                            s.setCount((int) cnt);
+                        }
+                        return ItemStack.EMPTY;
+                    } else {
+                        if (!simulate) {
+                            s.setCount(2147483647);
+                        }
+                        ItemStack result = stack.copy();
+                        result.setCount((int) (cnt - 2147483647));
+                        return result;
+                    }
+                } else {
+                    if (!simulate) {
+                        int index = this.indices.size();
+                        this.indices.put(key, index);
+                        this.stacks.set(index, stack.copy());
+                    }
+                    return ItemStack.EMPTY;
+                }
+            }
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            synchronized (this.lock) {
+                if (slot < 0 || this.stacks.size() <= slot) {
+                    return ItemStack.EMPTY;
+                }
+                ItemStack stack = this.stacks.get(slot);
+                if (stack.isEmpty()) {
+                    return ItemStack.EMPTY;
+                }
+                if (amount < stack.getCount()) {
+                    ItemStack result = stack.copy();
+                    result.setCount(amount);
+                    if (!simulate) {
+                        stack.shrink(amount);
+                    }
+                    return result;
+                } else {
+                    ItemStack result = stack.copy();
+                    if (!simulate) {
+                        this.indices.remove(new ItemKey(stack));
+                        for (int i = slot + 1; i < this.stacks.size(); i++) {
+                            ItemStack s = this.stacks.get(i);
+                            this.stacks.set(i - 1, s);
+                            if (s.isEmpty()) {
+                                continue;
+                            }
+                            ItemKey key = new ItemKey(s);
+                            this.indices.put(key, i - 1);
+                        }
+                        ItemStack last = this.stacks.get(this.stacks.size() - 1);
+                        if (!last.isEmpty()) {
+                            this.indices.remove(new ItemKey(last));
+                            this.stacks.set(this.stacks.size() - 1, ItemStack.EMPTY);
+                        }
+                    }
+                    return result;
+                }
+            }
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 2147483647;
+        }
     }
 
     @Override
-    public void markDirty() {
-        ItemStack stack = this.stacks.get(this.stacks.size() - 1);
-        if (stack.isEmpty()) {
-            return;
-        }
-        for (ContainerBankNull container : this.containers) {
-            container.grow();
-        }
+    protected IItemHandler createUnSidedHandler() {
+        return new StacksWrapper(this.indices, this.stacks);
     }
 }
