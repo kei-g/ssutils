@@ -21,11 +21,18 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class TileEntityBankNull extends TileEntityLockableLoot {
+    private final ArrayList<ContainerBankNull> containers = new ArrayList<ContainerBankNull>();
     private final GrowableItemStackList stacks = new GrowableItemStackList(54);
 
     @Override
     public Container createContainer(InventoryPlayer inventoryPlayer, EntityPlayer player) {
-        return new ContainerBankNull(this, inventoryPlayer, EnumHand.MAIN_HAND);
+        ContainerBankNull container = new ContainerBankNull(this, inventoryPlayer, EnumHand.MAIN_HAND);
+        this.containers.add(container);
+        return container;
+    }
+
+    public void onContainerClosed(ContainerBankNull container) {
+        this.containers.remove(container);
     }
 
     @Override
@@ -171,5 +178,12 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
 
     @Override
     public void markDirty() {
+        ItemStack stack = this.stacks.get(this.stacks.size() - 1);
+        if (stack.isEmpty()) {
+            return;
+        }
+        for (ContainerBankNull container : this.containers) {
+            container.grow();
+        }
     }
 }
