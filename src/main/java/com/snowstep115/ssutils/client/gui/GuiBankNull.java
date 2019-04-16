@@ -46,19 +46,6 @@ public class GuiBankNull extends GuiContainer {
         }
     }
 
-    private void drawItemStack(ItemStack stack, int x, int y) {
-        GlStateManager.translate(0.0F, 0.0F, 32.0F);
-        this.zLevel = 200.0F;
-        this.itemRender.zLevel = 200.0F;
-        net.minecraft.client.gui.FontRenderer font = stack.getItem().getFontRenderer(stack);
-        if (font == null)
-            font = fontRenderer;
-        this.itemRender.renderItemAndEffectIntoGUI(stack, x, y);
-        this.itemRender.renderItemOverlayIntoGUI(font, stack, x, y, getAltText(stack));
-        this.zLevel = 0.0F;
-        this.itemRender.zLevel = 0.0F;
-    }
-
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         final int LEFT = this.guiLeft;
@@ -77,12 +64,22 @@ public class GuiBankNull extends GuiContainer {
         GlStateManager.enableRescaleNormal();
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.translate(0.0F, 0.0F, 32.0F);
         NonNullList<ItemStack> stacks = this.inventorySlots.getInventory();
         int y = 2, x = 2;
         for (ItemStack stack : stacks) {
-            if (!stack.isEmpty()) {
-                this.drawItemStack(stack, x, y);
+            if (stack.isEmpty()) {
+                continue;
             }
+            this.zLevel = 200.0F;
+            this.itemRender.zLevel = 200.0F;
+            this.itemRender.renderItemAndEffectIntoGUI(stack, x, y);
+            net.minecraft.client.gui.FontRenderer font = stack.getItem().getFontRenderer(stack);
+            if (font == null)
+                font = this.fontRenderer;
+            this.itemRender.renderItemOverlayIntoGUI(font, stack, x, y, getAltText(stack));
+            this.zLevel = 0.0F;
+            this.itemRender.zLevel = 0.0F;
             x += 18;
             if (this.xSize < x + 18) {
                 x = 2;
