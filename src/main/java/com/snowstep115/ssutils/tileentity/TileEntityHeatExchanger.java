@@ -104,7 +104,16 @@ public class TileEntityHeatExchanger extends TileEntityTankBase implements ITick
         if (tile == null || !tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
             return null;
         }
-        return tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
+        IFluidHandler sideTank = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
+        if (sideTank == null) {
+            return null;
+        }
+        FluidStack side = sideTank.drain(1, false);
+        if (side == null) {
+            return null;
+        }
+        String name = side.getFluid().getName();
+        return name.equals("water") || name.equals("lava") ? sideTank : null;
     }
 
     private IFluidHandler getSideTank() {
