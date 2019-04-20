@@ -3,6 +3,7 @@ package com.snowstep115.ssutils;
 import com.snowstep115.ssutils.command.CommandGetNBT;
 import com.snowstep115.ssutils.command.CommandSetNBT;
 import com.snowstep115.ssutils.command.CommandUnsetNBT;
+import com.snowstep115.ssutils.command.CommandWalkBiome;
 import com.snowstep115.ssutils.proxy.CommonProxy;
 import com.snowstep115.ssutils.world.SnowWorldProvider;
 import net.minecraft.creativetab.CreativeTabs;
@@ -61,5 +62,6 @@ public class SnowStepUtils {
         event.registerServerCommand(new CommandGetNBT());
         event.registerServerCommand(new CommandSetNBT());
         event.registerServerCommand(new CommandUnsetNBT());
+        event.registerServerCommand(new CommandWalkBiome());
     }
 }
