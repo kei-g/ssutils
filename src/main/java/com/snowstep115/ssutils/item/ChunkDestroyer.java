@@ -55,9 +55,7 @@ public class ChunkDestroyer extends ItemBase {
             this.sz = cpos.getZStart();
             this.torch = Block.getBlockFromName("minecraft:torch").getDefaultState();
 
-            this.delegate = (w) -> {
-                guard(w);
-            };
+            this.delegate = this::guard;
             this.y = 0;
             this.z = 0;
         }
@@ -99,9 +97,7 @@ public class ChunkDestroyer extends ItemBase {
             }
             if (this.y == this.sy) {
                 if (this.isSlimeChunk) {
-                    this.delegate = (w) -> {
-                        construct(w);
-                    };
+                    this.delegate = this::construct;
                 } else {
                     finalizer.run(this);
                 }
@@ -118,9 +114,7 @@ public class ChunkDestroyer extends ItemBase {
                     replaceIfLavaOrWater(world, sx + 16, sy - y, sz + i, stone);
                 }
             }
-            this.delegate = (w) -> {
-                destroy(w);
-            };
+            this.delegate = this::destroy;
         }
 
         private void replaceIfLavaOrWater(World world, int x, int y, int z, IBlockState stone) {
