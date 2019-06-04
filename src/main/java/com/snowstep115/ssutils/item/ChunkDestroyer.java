@@ -34,7 +34,6 @@ public class ChunkDestroyer extends ItemBase {
         private final IBlockState air;
         private final IFinalizer finalizer;
         private final boolean isSlimeChunk;
-        private final EntityPlayer player;
         private final IBlockState stoneslab;
         private final int sx, sy, sz;
         private final IBlockState torch;
@@ -50,7 +49,6 @@ public class ChunkDestroyer extends ItemBase {
                     + (long) (cpos.z * cpos.z) * 0x4307a7L + (long) (cpos.z * 0x5f24f) ^ 0x3ad8025f);
             this.finalizer = finalizer;
             this.isSlimeChunk = rnd.nextInt(10) == 0;
-            this.player = player;
             this.stoneslab = Block.getBlockFromName("minecraft:stone_slab").getStateFromMeta(8);
             this.sx = cpos.getXStart();
             this.sy = bpos.getY() + 1;
