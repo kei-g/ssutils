@@ -41,6 +41,7 @@ public class ChunkDestroyer extends ItemBase {
         private Consumer<World> delegate;
         private int y, z;
 
+        @SuppressWarnings("deprecation")
         public Instance(World world, EntityPlayer player, IFinalizer finalizer) {
             this.air = Block.getBlockFromName("minecraft:air").getDefaultState();
             BlockPos bpos = player.getPosition();

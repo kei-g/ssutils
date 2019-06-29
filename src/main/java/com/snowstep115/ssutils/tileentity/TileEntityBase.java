@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public class TileEntityBase extends TileEntity {
+    @SuppressWarnings("unchecked")
     protected <T> void read(HashMap<BlockPos, T> stream, NBTTagCompound compound, String key,
             Predicate<TileEntity> predicate) {
         if (this.world == null) {
