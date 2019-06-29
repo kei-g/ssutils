@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 public class SnowStepUtils {
     public static final String MODID = "ssutils";
     public static final String NAME = "SnowStep's Utilities";
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "HEAD";
 
     public static final String CLIENT_PROXY = "com.snowstep115.ssutils.proxy.ClientProxy";
     public static final String SERVER_PROXY = "com.snowstep115.ssutils.proxy.ServerProxy";
