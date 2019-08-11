@@ -1,5 +1,6 @@
-package com.snowstep115.ssutils;
+package com.snowstep115.ssutils.init;
 
+import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.item.ChunkDestroyer;
 import com.snowstep115.ssutils.item.DirtCompressed;
 import com.snowstep115.ssutils.item.DirtDoubleCompressed;
@@ -20,7 +21,7 @@ import com.snowstep115.ssutils.item.RockDoubleCompressed;
 import com.snowstep115.ssutils.item.WheatSeedsCompressed;
 import com.snowstep115.ssutils.item.Yukiho;
 
-public class ModItems {
+public final class Items {
     public static ItemBlockBase ANDESITE_COMPRESSED;
     public static ItemBlockBase ANDESITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase BANK_NULL = new ItemBankNull();

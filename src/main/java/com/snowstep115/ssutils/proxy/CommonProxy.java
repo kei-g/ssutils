@@ -1,7 +1,7 @@
 package com.snowstep115.ssutils.proxy;
 
 import com.snowstep115.ssutils.SnowStepUtils;
-import com.snowstep115.ssutils.ModItems;
+import com.snowstep115.ssutils.init.Items;
 import com.snowstep115.ssutils.network.GuiHandler;
 import com.snowstep115.ssutils.tileentity.TileEntityBankNull;
 import com.snowstep115.ssutils.tileentity.TileEntityDistiller;
@@ -28,14 +28,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod.EventBusSubscriber
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        ModItems.init();
-        TileEntity.register(ModItems.BANK_NULL.getRegistryName().toString(), TileEntityBankNull.class);
-        TileEntity.register(ModItems.DISTILLER.getRegistryName().toString(), TileEntityDistiller.class);
-        TileEntity.register(ModItems.EXTRACTOR.getRegistryName().toString(), TileEntityExtractor.class);
-        TileEntity.register(ModItems.HEAT_EXCHANGER.getRegistryName().toString(), TileEntityHeatExchanger.class);
-        TileEntity.register(ModItems.INSERTER.getRegistryName().toString(), TileEntityInserter.class);
-        TileEntity.register(ModItems.SNOWCHEST.getRegistryName().toString(), TileEntitySnowChest.class);
-        TileEntity.register(ModItems.TRASHCAN.getRegistryName().toString(), TileEntityTrashCan.class);
+        Items.init();
+        TileEntity.register(Items.BANK_NULL.getRegistryName().toString(), TileEntityBankNull.class);
+        TileEntity.register(Items.DISTILLER.getRegistryName().toString(), TileEntityDistiller.class);
+        TileEntity.register(Items.EXTRACTOR.getRegistryName().toString(), TileEntityExtractor.class);
+        TileEntity.register(Items.HEAT_EXCHANGER.getRegistryName().toString(), TileEntityHeatExchanger.class);
+        TileEntity.register(Items.INSERTER.getRegistryName().toString(), TileEntityInserter.class);
+        TileEntity.register(Items.SNOWCHEST.getRegistryName().toString(), TileEntitySnowChest.class);
+        TileEntity.register(Items.TRASHCAN.getRegistryName().toString(), TileEntityTrashCan.class);
     }
 
     public void init(FMLInitializationEvent event) {
@@ -51,58 +51,58 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        ModItems.STONE_COMPRESSED.processBlock(event);
-        ModItems.STONE_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.GRANITE_COMPRESSED.processBlock(event);
-        ModItems.GRANITE_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.DIORITE_COMPRESSED.processBlock(event);
-        ModItems.DIORITE_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.ANDESITE_COMPRESSED.processBlock(event);
-        ModItems.ANDESITE_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.COBBLESTONE_COMPRESSED.processBlock(event);
-        ModItems.COBBLESTONE_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.DIRT_COMPRESSED.processBlock(event);
-        ModItems.DIRT_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.NETHERRACK_COMPRESSED.processBlock(event);
-        ModItems.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
-        ModItems.BANK_NULL.processBlock(event);
-        ModItems.DISTILLER.processBlock(event);
-        ModItems.EXTRACTOR.processBlock(event);
-        ModItems.HEAT_EXCHANGER.processBlock(event);
-        ModItems.INSERTER.processBlock(event);
-        ModItems.SNOW_TELEPORTER.processBlock(event);
-        ModItems.SNOWCHEST.processBlock(event);
-        ModItems.TRASHCAN.processBlock(event);
+        Items.STONE_COMPRESSED.processBlock(event);
+        Items.STONE_DOUBLE_COMPRESSED.processBlock(event);
+        Items.GRANITE_COMPRESSED.processBlock(event);
+        Items.GRANITE_DOUBLE_COMPRESSED.processBlock(event);
+        Items.DIORITE_COMPRESSED.processBlock(event);
+        Items.DIORITE_DOUBLE_COMPRESSED.processBlock(event);
+        Items.ANDESITE_COMPRESSED.processBlock(event);
+        Items.ANDESITE_DOUBLE_COMPRESSED.processBlock(event);
+        Items.COBBLESTONE_COMPRESSED.processBlock(event);
+        Items.COBBLESTONE_DOUBLE_COMPRESSED.processBlock(event);
+        Items.DIRT_COMPRESSED.processBlock(event);
+        Items.DIRT_DOUBLE_COMPRESSED.processBlock(event);
+        Items.NETHERRACK_COMPRESSED.processBlock(event);
+        Items.NETHERRACK_DOUBLE_COMPRESSED.processBlock(event);
+        Items.BANK_NULL.processBlock(event);
+        Items.DISTILLER.processBlock(event);
+        Items.EXTRACTOR.processBlock(event);
+        Items.HEAT_EXCHANGER.processBlock(event);
+        Items.INSERTER.processBlock(event);
+        Items.SNOW_TELEPORTER.processBlock(event);
+        Items.SNOWCHEST.processBlock(event);
+        Items.TRASHCAN.processBlock(event);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        ModItems.STONE_COMPRESSED.process(event);
-        ModItems.STONE_DOUBLE_COMPRESSED.process(event);
-        ModItems.GRANITE_COMPRESSED.process(event);
-        ModItems.GRANITE_DOUBLE_COMPRESSED.process(event);
-        ModItems.DIORITE_COMPRESSED.process(event);
-        ModItems.DIORITE_DOUBLE_COMPRESSED.process(event);
-        ModItems.ANDESITE_COMPRESSED.process(event);
-        ModItems.ANDESITE_DOUBLE_COMPRESSED.process(event);
-        ModItems.COBBLESTONE_COMPRESSED.process(event);
-        ModItems.COBBLESTONE_DOUBLE_COMPRESSED.process(event);
-        ModItems.DIRT_COMPRESSED.process(event);
-        ModItems.DIRT_DOUBLE_COMPRESSED.process(event);
-        ModItems.NETHERRACK_COMPRESSED.process(event);
-        ModItems.NETHERRACK_DOUBLE_COMPRESSED.process(event);
-        ModItems.BANK_NULL.process(event);
-        ModItems.CHUNK_DESTROYER.process(event);
-        ModItems.DISTILLER.process(event);
-        ModItems.EXTRACTOR.process(event);
-        ModItems.HARUKA_AXE.process(event);
-        ModItems.HEAT_EXCHANGER.process(event);
-        ModItems.INSERTER.process(event);
-        ModItems.RED_FLOWER_COMPRESSED.process(event);
-        ModItems.SNOW_TELEPORTER.process(event);
-        ModItems.SNOWCHEST.process(event);
-        ModItems.TRASHCAN.process(event);
-        ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
-        ModItems.YUKIHO.process(event);
+        Items.STONE_COMPRESSED.process(event);
+        Items.STONE_DOUBLE_COMPRESSED.process(event);
+        Items.GRANITE_COMPRESSED.process(event);
+        Items.GRANITE_DOUBLE_COMPRESSED.process(event);
+        Items.DIORITE_COMPRESSED.process(event);
+        Items.DIORITE_DOUBLE_COMPRESSED.process(event);
+        Items.ANDESITE_COMPRESSED.process(event);
+        Items.ANDESITE_DOUBLE_COMPRESSED.process(event);
+        Items.COBBLESTONE_COMPRESSED.process(event);
+        Items.COBBLESTONE_DOUBLE_COMPRESSED.process(event);
+        Items.DIRT_COMPRESSED.process(event);
+        Items.DIRT_DOUBLE_COMPRESSED.process(event);
+        Items.NETHERRACK_COMPRESSED.process(event);
+        Items.NETHERRACK_DOUBLE_COMPRESSED.process(event);
+        Items.BANK_NULL.process(event);
+        Items.CHUNK_DESTROYER.process(event);
+        Items.DISTILLER.process(event);
+        Items.EXTRACTOR.process(event);
+        Items.HARUKA_AXE.process(event);
+        Items.HEAT_EXCHANGER.process(event);
+        Items.INSERTER.process(event);
+        Items.RED_FLOWER_COMPRESSED.process(event);
+        Items.SNOW_TELEPORTER.process(event);
+        Items.SNOWCHEST.process(event);
+        Items.TRASHCAN.process(event);
+        Items.WHEAT_SEEDS_COMPRESSED.process(event);
+        Items.YUKIHO.process(event);
     }
 }

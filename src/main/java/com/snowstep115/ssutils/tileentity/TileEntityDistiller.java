@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
-import com.snowstep115.ssutils.ModItems;
+import com.snowstep115.ssutils.init.Items;
 import com.snowstep115.ssutils.util.DistillerInfo;
 
 import net.minecraft.item.ItemStack;
@@ -35,7 +35,7 @@ public class TileEntityDistiller extends TileEntityTankBase implements ITickable
         dropFluidShard(this.aboveTank);
         dropFluidShard(this.belowTank);
         dropFluidShard(this.inputTank);
-        spawnEntity(new ItemStack(ModItems.DISTILLER));
+        spawnEntity(new ItemStack(Items.DISTILLER));
     }
 
     @Override

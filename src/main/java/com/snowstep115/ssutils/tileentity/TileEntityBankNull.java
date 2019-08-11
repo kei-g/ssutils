@@ -2,8 +2,8 @@ package com.snowstep115.ssutils.tileentity;
 
 import java.util.HashMap;
 
-import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.container.ContainerBankNull;
+import com.snowstep115.ssutils.init.Items;
 import com.snowstep115.ssutils.util.ItemKey;
 
 import net.minecraft.entity.item.EntityItem;
@@ -75,11 +75,11 @@ public class TileEntityBankNull extends TileEntityLockableLoot {
             }
             this.world.spawnEntity(new EntityItem(this.world, x, y, z, stack));
         }
-        this.world.spawnEntity(new EntityItem(this.world, x, y, z, new ItemStack(ModItems.BANK_NULL)));
+        this.world.spawnEntity(new EntityItem(this.world, x, y, z, new ItemStack(Items.BANK_NULL)));
     }
 
     public void spawnAsEntity() {
-        ItemStack bankNull = new ItemStack(ModItems.BANK_NULL);
+        ItemStack bankNull = new ItemStack(Items.BANK_NULL);
         NBTTagCompound compound = new NBTTagCompound();
         bankNull.setTagCompound(compound);
         writeToNBT(compound);

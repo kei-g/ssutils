@@ -1,6 +1,7 @@
 package com.snowstep115.ssutils.proxy;
 
-import com.snowstep115.ssutils.ModItems;
+import com.snowstep115.ssutils.init.Items;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -28,32 +29,32 @@ public class ClientProxy extends CommonProxy {
      */
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
-        ModItems.STONE_COMPRESSED.process(event);
-        ModItems.STONE_DOUBLE_COMPRESSED.process(event);
-        ModItems.GRANITE_COMPRESSED.process(event);
-        ModItems.GRANITE_DOUBLE_COMPRESSED.process(event);
-        ModItems.DIORITE_COMPRESSED.process(event);
-        ModItems.DIORITE_DOUBLE_COMPRESSED.process(event);
-        ModItems.ANDESITE_COMPRESSED.process(event);
-        ModItems.ANDESITE_DOUBLE_COMPRESSED.process(event);
-        ModItems.COBBLESTONE_COMPRESSED.process(event);
-        ModItems.COBBLESTONE_DOUBLE_COMPRESSED.process(event);
-        ModItems.DIRT_COMPRESSED.process(event);
-        ModItems.DIRT_DOUBLE_COMPRESSED.process(event);
-        ModItems.NETHERRACK_COMPRESSED.process(event);
-        ModItems.NETHERRACK_DOUBLE_COMPRESSED.process(event);
-        ModItems.BANK_NULL.process(event);
-        ModItems.CHUNK_DESTROYER.process(event);
-        ModItems.DISTILLER.process(event);
-        ModItems.EXTRACTOR.process(event);
-        ModItems.HARUKA_AXE.process(event);
-        ModItems.HEAT_EXCHANGER.process(event);
-        ModItems.INSERTER.process(event);
-        ModItems.RED_FLOWER_COMPRESSED.process(event);
-        ModItems.SNOW_TELEPORTER.process(event);
-        ModItems.SNOWCHEST.process(event);
-        ModItems.TRASHCAN.process(event);
-        ModItems.WHEAT_SEEDS_COMPRESSED.process(event);
-        ModItems.YUKIHO.process(event);
+        Items.STONE_COMPRESSED.process(event);
+        Items.STONE_DOUBLE_COMPRESSED.process(event);
+        Items.GRANITE_COMPRESSED.process(event);
+        Items.GRANITE_DOUBLE_COMPRESSED.process(event);
+        Items.DIORITE_COMPRESSED.process(event);
+        Items.DIORITE_DOUBLE_COMPRESSED.process(event);
+        Items.ANDESITE_COMPRESSED.process(event);
+        Items.ANDESITE_DOUBLE_COMPRESSED.process(event);
+        Items.COBBLESTONE_COMPRESSED.process(event);
+        Items.COBBLESTONE_DOUBLE_COMPRESSED.process(event);
+        Items.DIRT_COMPRESSED.process(event);
+        Items.DIRT_DOUBLE_COMPRESSED.process(event);
+        Items.NETHERRACK_COMPRESSED.process(event);
+        Items.NETHERRACK_DOUBLE_COMPRESSED.process(event);
+        Items.BANK_NULL.process(event);
+        Items.CHUNK_DESTROYER.process(event);
+        Items.DISTILLER.process(event);
+        Items.EXTRACTOR.process(event);
+        Items.HARUKA_AXE.process(event);
+        Items.HEAT_EXCHANGER.process(event);
+        Items.INSERTER.process(event);
+        Items.RED_FLOWER_COMPRESSED.process(event);
+        Items.SNOW_TELEPORTER.process(event);
+        Items.SNOWCHEST.process(event);
+        Items.TRASHCAN.process(event);
+        Items.WHEAT_SEEDS_COMPRESSED.process(event);
+        Items.YUKIHO.process(event);
     }
 }

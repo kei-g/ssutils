@@ -1,8 +1,9 @@
 package com.snowstep115.ssutils.tileentity;
 
-import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.container.ContainerSnowChest;
+import com.snowstep115.ssutils.init.Items;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -32,7 +33,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
     }
 
     public void dropAll() {
-        ItemStack chest = new ItemStack(ModItems.SNOWCHEST);
+        ItemStack chest = new ItemStack(Items.SNOWCHEST);
         if (!isEmpty()) {
             NBTTagCompound compound = serializeNBT();
             NBTTagList itemsTag = compound.getTagList("items", NBT.TAG_COMPOUND);
@@ -46,7 +47,7 @@ public class TileEntitySnowChest extends TileEntityLockableLoot {
     }
 
     public void spawnAsEntity() {
-        ItemStack chest = new ItemStack(ModItems.SNOWCHEST);
+        ItemStack chest = new ItemStack(Items.SNOWCHEST);
         if (!isEmpty()) {
             NBTTagCompound compound = serializeNBT();
             NBTTagList itemsTag = compound.getTagList("items", NBT.TAG_COMPOUND);

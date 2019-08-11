@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import javax.annotation.Nullable;
 
-import com.snowstep115.ssutils.ModItems;
+import com.snowstep115.ssutils.init.Items;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,7 +39,7 @@ public class TileEntityHeatExchanger extends TileEntityTankBase implements ITick
     public void dropAll() {
         dropFluidShard(this.aboveTank);
         dropFluidShard(this.belowTank);
-        spawnEntity(new ItemStack(ModItems.HEAT_EXCHANGER));
+        spawnEntity(new ItemStack(Items.HEAT_EXCHANGER));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.snowstep115.ssutils.block;
 
-import com.snowstep115.ssutils.ModItems;
 import com.snowstep115.ssutils.SnowStepUtils;
+import com.snowstep115.ssutils.init.Items;
 import com.snowstep115.ssutils.network.GuiHandler;
 import com.snowstep115.ssutils.tileentity.TileEntitySnowChest;
 import net.minecraft.block.BlockHorizontal;
@@ -108,7 +108,7 @@ public class BlockSnowChest extends BlockBase {
             ItemStack stack) {
         if (tile instanceof TileEntitySnowChest) {
             TileEntitySnowChest snowchest = (TileEntitySnowChest) tile;
-            if (stack.getItem() == ModItems.YUKIHO) {
+            if (stack.getItem() == Items.YUKIHO) {
                 snowchest.dropAll();
             } else {
                 snowchest.spawnAsEntity();
