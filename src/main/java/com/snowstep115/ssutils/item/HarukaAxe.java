@@ -67,7 +67,7 @@ public class HarukaAxe extends ItemAxe {
         boolean result = super.onBlockDestroyed(stack, world, state, pos, entity);
         setDamage(stack, 0);
         int fortuneLevel = getFortuneLevel(stack);
-        SnowStepUtils.LOGGER.info("fortune level = " + fortuneLevel);
+        SnowStepUtils.info("fortune level = " + fortuneLevel);
         for (int x = -16; x < 16; x++) {
             for (int y = -16; y < 16; y++) {
                 for (int z = -16; z < 16; z++) {

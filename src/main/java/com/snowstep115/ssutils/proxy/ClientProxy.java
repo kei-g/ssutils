@@ -29,6 +29,7 @@ public class ClientProxy extends CommonProxy {
      */
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
+        Items.CHUNKLOADER.process(event);
         Items.STONE_COMPRESSED.process(event);
         Items.STONE_DOUBLE_COMPRESSED.process(event);
         Items.GRANITE_COMPRESSED.process(event);

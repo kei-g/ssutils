@@ -51,6 +51,7 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        Items.CHUNKLOADER.processBlock(event);
         Items.STONE_COMPRESSED.processBlock(event);
         Items.STONE_DOUBLE_COMPRESSED.processBlock(event);
         Items.GRANITE_COMPRESSED.processBlock(event);
@@ -77,6 +78,7 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+        Items.CHUNKLOADER.process(event);
         Items.STONE_COMPRESSED.process(event);
         Items.STONE_DOUBLE_COMPRESSED.process(event);
         Items.GRANITE_COMPRESSED.process(event);

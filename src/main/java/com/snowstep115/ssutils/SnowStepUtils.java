@@ -36,7 +36,11 @@ public class SnowStepUtils {
     @Mod.Instance
     public static SnowStepUtils INSTANCE;
 
-    public static Logger LOGGER;
+    private static Logger LOGGER;
+
+    public static void info(String format, Object... args) {
+        LOGGER.info(String.format(format, args));
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

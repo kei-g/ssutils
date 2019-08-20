@@ -2,6 +2,7 @@ package com.snowstep115.ssutils.init;
 
 import com.snowstep115.ssutils.SnowStepUtils;
 import com.snowstep115.ssutils.item.ChunkDestroyer;
+import com.snowstep115.ssutils.item.ItemChunkLoader;
 import com.snowstep115.ssutils.item.DirtCompressed;
 import com.snowstep115.ssutils.item.DirtDoubleCompressed;
 import com.snowstep115.ssutils.item.HarukaAxe;
@@ -26,6 +27,7 @@ public final class Items {
     public static ItemBlockBase ANDESITE_DOUBLE_COMPRESSED;
     public static ItemBlockBase BANK_NULL = new ItemBankNull();
     public static final ItemBase CHUNK_DESTROYER = new ChunkDestroyer();
+    public static ItemBlockBase CHUNKLOADER;
     public static ItemBlockBase COBBLESTONE_COMPRESSED;
     public static ItemBlockBase COBBLESTONE_DOUBLE_COMPRESSED;
     public static ItemBlockBase DIORITE_COMPRESSED;
@@ -54,6 +56,7 @@ public final class Items {
         try {
             ANDESITE_COMPRESSED = new RockCompressed("andesite");
             ANDESITE_DOUBLE_COMPRESSED = new RockDoubleCompressed("andesite");
+            CHUNKLOADER = new ItemChunkLoader();
             COBBLESTONE_COMPRESSED = new RockCompressed("cobblestone");
             COBBLESTONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("cobblestone");
             DIORITE_COMPRESSED = new RockCompressed("diorite");
@@ -71,7 +74,7 @@ public final class Items {
             STONE_COMPRESSED = new RockCompressed("stone");
             STONE_DOUBLE_COMPRESSED = new RockDoubleCompressed("stone");
         } catch (Throwable exception) {
-            SnowStepUtils.LOGGER.info(exception.getMessage());
+            SnowStepUtils.info(exception.getMessage());
         }
     }
 }
